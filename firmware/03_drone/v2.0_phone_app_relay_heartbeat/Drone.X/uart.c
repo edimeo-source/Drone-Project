@@ -4,8 +4,9 @@
  *  What    : UART2 link to the PC (PuTTY and the PC tuner) with an interrupt-driven receive
  *            buffer.
  *  Version : v2.0   |   Date: 2026-11-23
- *  Status  : CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24).
- *            Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75).
+ *  Status  : Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24). Host
+ *            tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75). Replaced
+ *            by v3.0 (two PIDs).
  *  Board   : PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK,
  *            60 MHz PBCLK)
  * ---------------------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ extern float data_angle[];
 static int nlines=0; static char lastline[160];
 // ---------------------------------------------------------------------------------------------
 // void putsU2(char *s)
-//   Sends a text line to the PC over UART2, followed by a new line.
+//   Test stand-in for the UART: counts the lines the firmware prints and keeps the last one.
 // ---------------------------------------------------------------------------------------------
 void putsU2(char *s){ nlines++; strncpy(lastline,s,159); }
 static int fails=0;

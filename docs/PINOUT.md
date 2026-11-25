@@ -7,7 +7,7 @@ All connections are on the **J12 header of the PIC32MZ EF Starter Kit**. Pin fun
 
 This page is generated from the same tables that are printed at the top of every source file.
 
-## Current wiring (v2.0, Nov 23)
+## Current wiring (v3.0, the same as v2.0)
 
 | J12 pin | PIC32 pin | Connected to |
 |---|---|---|
@@ -392,9 +392,32 @@ PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
 Kit LEDs LED1-3 = RH0-RH2   SW1 = RB12   SW2 = RB13
 ```
 
-### Drone.X v2.0 - phone app over Bluetooth, relay kill, 500 ms heartbeat  (CURRENT)  (2026-11-23)
+### Drone.X v2.0 - phone app over Bluetooth, relay kill, 500 ms heartbeat  (2026-11-23)
 
 [`firmware/03_drone/v2.0_phone_app_relay_heartbeat`](../firmware/03_drone/v2.0_phone_app_relay_heartbeat)
+
+```text
+IMU LSM6DSO (SPI1 mode 3, CS on pin 16)
+  3V3 pin 1   GND pin 6   SCL/SCK pin 23 (RD1)   SDA/MOSI pin 37 (RD10)
+  SDO/MISO pin 7 (RA14)   CS pin 16 (RK1)
+ESC 1 front-left .. signal J12 pin 11 (RD0 -> OC1)   ground pin 14
+ESC 2 front-right . signal J12 pin 12 (RF2 -> OC2)   ground pin 20
+ESC 3 back-left ... signal J12 pin 21 (RF4 -> OC3)   ground pin 25
+ESC 4 back-right .. signal J12 pin 19 (RF5 -> OC4)   ground pin 30
+ESC red 5 V wires . NOT connected (ESCs are powered by the battery/PDB)
+Bluefruit SPI Friend (shares SPI1 with the IMU through splitter wires)
+  VIN pin 2 (+5 V, the module has its own 3.3 V regulator)   GND any J12 GND pin (e.g. 9)
+  SCK pin 23   MOSI pin 37   MISO pin 7   CS pin 13 (RJ13)   IRQ and RST not connected
+Motor-power relay . CH1 = J12 pin 33 (RK4), HIGH = motor power ON, LOW/reset = power cut
+Power/relay board <-> kit: pin 2 (+5 V from the 7805 INTO the kit), pin 33 (RK4), pin 34 (GND)
+PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
+  pins 8 (RG6) and 10 (RB14) are the PC link: never wire them, never press SW3
+Kit LEDs LED1-3 = RH0-RH2   SW1 = RB12   SW2 = RB13
+```
+
+### Drone.X v3.0 - roll PID + pitch PID, 4 different ESC pulses, one axis at a time  (CURRENT)  (2026-11-25)
+
+[`firmware/03_drone/v3.0_two_pid_roll_pitch`](../firmware/03_drone/v3.0_two_pid_roll_pitch)
 
 ```text
 IMU LSM6DSO (SPI1 mode 3, CS on pin 16)

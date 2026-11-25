@@ -30,10 +30,10 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 
 | What | Where |
 |---|---|
-| Drone firmware (MPLAB X project) | [`firmware/03_drone/v2.0_phone_app_relay_heartbeat/Drone.X`](firmware/03_drone/v2.0_phone_app_relay_heartbeat/Drone.X) |
-| How to run v2.0 (bench steps) | [`firmware/03_drone/v2.0_phone_app_relay_heartbeat/HOW_TO_RUN.md`](firmware/03_drone/v2.0_phone_app_relay_heartbeat/HOW_TO_RUN.md) |
-| PC PID tuner (USB or Bluetooth) | [`tools/pc_pid_tuner/v6_ble_2026-11-23_CURRENT`](tools/pc_pid_tuner/v6_ble_2026-11-23_CURRENT) |
-| Android app (install the APK) | [`tools/android_drone_tuner`](tools/android_drone_tuner) |
+| Drone firmware (MPLAB X project) | [`firmware/03_drone/v3.0_two_pid_roll_pitch/Drone.X`](firmware/03_drone/v3.0_two_pid_roll_pitch/Drone.X) |
+| How to run v3.0: tune roll, then pitch, then both | [`firmware/03_drone/v3.0_two_pid_roll_pitch/HOW_TO_RUN.md`](firmware/03_drone/v3.0_two_pid_roll_pitch/HOW_TO_RUN.md) |
+| PC PID tuner (USB or Bluetooth) | [`tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25_CURRENT`](tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25_CURRENT) |
+| Android app (install the APK) | [`tools/android_drone_tuner/v3.0_two_axis_2026-11-25_CURRENT`](tools/android_drone_tuner/v3.0_two_axis_2026-11-25_CURRENT) |
 | Electronics tray to print | [`cad/06_box_v4_1_tray_CURRENT`](cad/06_box_v4_1_tray_CURRENT) (+ collar v3.1 from [`cad/04_box_v3_tray_and_collar`](cad/04_box_v3_tray_and_collar)) |
 | Sensor deck to print | [`cad/sensor_deck/v3_1_CURRENT`](cad/sensor_deck/v3_1_CURRENT) |
 | Full J12 pinout, every version | [`docs/PINOUT.md`](docs/PINOUT.md) |
@@ -55,7 +55,9 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | Read IMU angles | [`01_bench_tests/03_imu_roll_pitch_yaw_spi`](firmware/01_bench_tests/03_imu_roll_pitch_yaw_spi) |
 | Click the relay from the phone (START/STOP) | [`01_bench_tests/09_bluefruit_relay_test`](firmware/01_bench_tests/09_bluefruit_relay_test) |
 | Run the seesaw PID | [`02_seesaw/03_SewSaw_step2-3`](firmware/02_seesaw/03_SewSaw_step2-3) |
-| Fly / tune the drone | [`03_drone/v2.0_phone_app_relay_heartbeat`](firmware/03_drone/v2.0_phone_app_relay_heartbeat) |
+| Find the liftoff pulse | [`01_bench_tests/12_liftoff_throttle_test`](firmware/01_bench_tests/12_liftoff_throttle_test) |
+| Match the 4 motors (trims) | [`01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
+| Fly / tune the drone | [`03_drone/v3.0_two_pid_roll_pitch`](firmware/03_drone/v3.0_two_pid_roll_pitch) |
 
 ## Every version, in order
 
@@ -84,12 +86,14 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-22 | Drone.X v1.2 | 75 deg tip cutoff; every run recorded first, sent after | [`firmware/03_drone/v1.2_tip_cutoff_and_recorded_runs`](firmware/03_drone/v1.2_tip_cutoff_and_recorded_runs) |
 | 2026-11-22 | CAD: sensor deck v3.1 | IMU + Bluefruit deck, true-front orientation | [`cad/sensor_deck/v3_1_CURRENT`](cad/sensor_deck/v3_1_CURRENT) |
 | 2026-11-23 | Bench: Bluefruit + relay | Phone START/STOP switches the relay | [`firmware/01_bench_tests/09_bluefruit_relay_test`](firmware/01_bench_tests/09_bluefruit_relay_test) |
-| 2026-11-23 | **Drone.X v2.0 (current)** | Phone app over Bluetooth, relay kill, 500 ms heartbeat, step-test arrays to the phone | [`firmware/03_drone/v2.0_phone_app_relay_heartbeat`](firmware/03_drone/v2.0_phone_app_relay_heartbeat) |
-| 2026-11-23 | PC tuner v6 + Android app | Tuners for the v2.0 protocol | [`tools`](tools) |
+| 2026-11-23 | Drone.X v2.0 | Phone app over Bluetooth, relay kill, 500 ms heartbeat, step-test arrays to the phone | [`firmware/03_drone/v2.0_phone_app_relay_heartbeat`](firmware/03_drone/v2.0_phone_app_relay_heartbeat) |
+| 2026-11-23 | PC tuner v6 + Android app 2.0 | Tuners for the v2.0 protocol | [`tools`](tools) |
 | 2026-11-24 | CAD: tray v4, **tray v4.1 (current)** | Relay bay in the back lobe, slot for the battery bullet leads | [`cad/06_box_v4_1_tray_CURRENT`](cad/06_box_v4_1_tray_CURRENT) |
 | 2026-11-25 | Bench: motor ID test | PuTTY command spins the motor you name (RR 1150): wiring + direction check | [`firmware/01_bench_tests/10_motor_id_test`](firmware/01_bench_tests/10_motor_id_test) |
 | 2026-11-25 | Bench: motor calibration test | Kitchen-scale thrust sweep, prints per-motor pulse trims | [`firmware/01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
 | 2026-11-25 | Bench: liftoff throttle test | Full-range (to 2000 us) PuTTY control with +/- steps to find the liftoff pulse | [`firmware/01_bench_tests/12_liftoff_throttle_test`](firmware/01_bench_tests/12_liftoff_throttle_test) |
+| 2026-11-25 | **Drone.X v3.0 (current)** | Professor's notes: roll PID + pitch PID, 4 different pulses, tune one axis at a time, then both; soft start, motor trims | [`firmware/03_drone/v3.0_two_pid_roll_pitch`](firmware/03_drone/v3.0_two_pid_roll_pitch) |
+| 2026-11-25 | PC tuner v7 + Android app 3.0 | Axis select, roll and pitch gains, throttle T, Hold row for the demo | [`tools`](tools) |
 
 ## Repo layout
 
@@ -99,10 +103,10 @@ Drone-Project/
 │   ├── 00_flight_controller_draft/   Nov 4 practice flight controller (I2C IMU, 400 Hz ESC frame)
 │   ├── 01_bench_tests/               one-file test programs: ESCs, motors, IMU, relay, motor ID, calibration, liftoff
 │   ├── 02_seesaw/                    the 2-motor seesaw rig (single file, then SewSaw.X)
-│   └── 03_drone/                     Drone.X v0.1 -> v2.0 (each a complete MPLAB X project)
+│   └── 03_drone/                     Drone.X v0.1 -> v3.0 (each a complete MPLAB X project)
 ├── tools/
-│   ├── pc_pid_tuner/                 PC tuner GUI, v1 -> v6 (which firmware each pairs with)
-│   └── android_drone_tuner/          phone app (APK + source)
+│   ├── pc_pid_tuner/                 PC tuner GUI, v1 -> v7 (which firmware each pairs with)
+│   └── android_drone_tuner/          phone app, v2.0 and v3.0 (APK + source)
 ├── cad/                              every printed part: STL to print, STEP to edit, renders, CadQuery source
 └── docs/                             pinout (every version), wiring diagrams, pinout sheets, history
 ```
@@ -128,7 +132,7 @@ Drone-Project/
 // ---------------------------------------------------------------------------------------------
 ```
 
-## Current J12 pinout (v2.0)
+## Current J12 pinout (v3.0, same wiring as v2.0)
 
 ```text
 IMU LSM6DSO (SPI1 mode 3, CS on pin 16)
@@ -177,19 +181,32 @@ $$\theta_k=\alpha\left(\theta_{k-1}+\omega_k\,\Delta t\right)+(1-\alpha)\,\theta
 
 $$e=r-\theta,\qquad \dot e=\dot r-\dot\theta=-\omega_{\text{gyro}},\qquad E_k=\operatorname{clamp}\!\left(E_{k-1}+e_k\,\Delta t,\ \pm E_{\max}\right)$$
 
-$$u_k=\operatorname{clamp}\!\left(K_p\,e_k+K_i\,E_k+K_d\,\dot e_k,\ \pm u_{\max}\right),\qquad E_{\max}=20\ ^{\circ}\!\cdot\text{s},\quad u_{\max}=500\ \mu\text{s}\ (\text{v2.0})$$
+$$u_k=\operatorname{clamp}\!\left(K_p\,e_k+K_i\,E_k+K_d\,\dot e_k,\ \pm u_{\max}\right),\qquad E_{\max}=20\ ^{\circ}\!\cdot\text{s},\quad u_{\max}=500\ \mu\text{s}\ (\text{v2.0, v3.0})$$
 
 **Mixer, v0.1 to v2.0 (pitch only, two PWM groups):**
 
 $$\text{front (ESC 1, 2)}=\text{base}_{\text{front}}+u,\qquad \text{back (ESC 3, 4)}=\text{base}_{\text{back}}-u$$
 
-In PID mode each pulse is kept at or above $1100\ \mu\text{s}$ so the props keep turning. Every pulse is capped at $2000\ \mu\text{s}$.
+**Mixer, v3.0 (professor's notes: two PIDs, all four pulses different).** The roll PID gives $RC$, the pitch PID gives $PC$, and $T$ is the throttle (slightly above liftoff):
 
-**Safety (v2.0).** The motors go off and the relay opens on any of these:
+$$
+\begin{aligned}
+m_{FL}&=T+PC+RC, & m_{FR}&=T+PC-RC,\\
+m_{RL}&=T-PC+RC, & m_{RR}&=T-PC-RC.
+\end{aligned}
+$$
+
+Tuning one axis at a time sets the other correction to 0: roll only ($PC=0$) is the left pair against the right pair, pitch only ($RC=0$) is the front pair against the back pair, the seesaw both times.
+The left pair gets $+RC$ because roll $+$ = left side up: if the left is too high, $e_r<0$, so $RC<0$ and the left motors slow down.
+
+In PID mode each pulse is kept at or above $1100\ \mu\text{s}$ so the props keep turning. Every pulse is capped at $2000\ \mu\text{s}$.
+In v3.0 each motor's trim from bench test 11 is applied last: $p'=1000+g\,(p-1000)+o$.
+
+**Safety (v2.0 and v3.0).** The motors go off and the relay opens on any of these:
 
 - SW1;
 - an IMU error;
-- $|\theta_{\text{pitch}}|$ or $|\theta_{\text{roll}}|>75^{\circ}$;
+- $|\theta_{\text{pitch}}|$ or $|\theta_{\text{roll}}|>75^{\circ}$ ($60^{\circ}$ in v3.0);
 - a STOP from the phone or the PC;
 - no heartbeat `H` for $500\ \text{ms}$ from the link that armed it.
 

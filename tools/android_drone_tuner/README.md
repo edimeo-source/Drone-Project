@@ -1,14 +1,14 @@
-# Drone Tuner - Android app  (v2.0, 2026-11-23)
+# Drone Tuner - Android app, every version
 
-Phone app for **Drone.X v2.0**: connects to the Bluefruit over Bluetooth LE (Nordic UART service),
-ARMs / STOPs the drone, sends the 500 ms heartbeat, changes PID gains and runs step tests
-(the drone records the run, then sends the arrays to the phone).
+Phone app for the drone: connects to the Bluefruit over Bluetooth LE (Nordic UART service), ARMs / KILLs the drone,
+sends the heartbeat every 100 ms, changes PID gains and runs step tests (the drone records the run, then sends the
+arrays to the phone).
 
-| File | What it is |
-|---|---|
-| `DroneTuner.apk` | Ready-to-install app (Android 7.0+). Copy it to the phone and open it (allow "install unknown apps"). |
-| `android_app/` | Source: `MainActivity.java` (the whole app), `AndroidManifest.xml`, icons, Gradle files. |
-| `build_scripts/` | How the APK was built without Android Studio (aapt2 + javac + dx + a v1/v2/v3 signer). The signing key is **not** in the repo. |
+| Folder | Date | Pairs with firmware |
+|---|---|---|
+| [`v2.0_2026-11-23`](v2.0_2026-11-23) | 2026-11-23 | Drone.X v2.0 (pitch PID only) |
+| [`v3.0_two_axis_2026-11-25_CURRENT`](v3.0_two_axis_2026-11-25_CURRENT) | 2026-11-25 | Drone.X v3.0 (roll + pitch PIDs) - **current** |
+| [`build_scripts`](build_scripts) | | How the APKs were built without Android Studio (javac + dx + aapt2 + a v1/v2/v3 signer). The signing key is **not** in the repo. |
 
-Status: built and signature-checked; not yet tested on a real phone against the drone.
+Install: copy `DroneTuner.apk` to the phone and open it (allow "install unknown apps" once).
 To build it yourself, open `android_app/` in Android Studio (minSdk 24, targetSdk 33) and press Run.

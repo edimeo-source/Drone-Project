@@ -1,0 +1,1 @@
+v3.0 - roll PID + pitch PID (two PID controllers, professor's notes Nov 25). Based on v2.0.

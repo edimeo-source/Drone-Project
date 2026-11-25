@@ -3,8 +3,9 @@
  *  File    : firmware/03_drone/v2.0_phone_app_relay_heartbeat/host_tests/v12_test.c
  *  What    : Host test: the 75 deg tip cutoff and the end of a recorded run.
  *  Version : v2.0   |   Date: 2026-11-23
- *  Status  : CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24).
- *            Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75).
+ *  Status  : Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24). Host
+ *            tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75). Replaced
+ *            by v3.0 (two PIDs).
  *  Runs on : a PC (gcc), not the PIC32. Start it with host_tests/run_tests.sh
  * ---------------------------------------------------------------------------------------------
  *  FUNCTIONS IN THIS FILE (each has a title block above it): putsU2(), tick(), run_for(),
@@ -23,7 +24,7 @@ extern volatile int data_complete;
 extern int check_count;
 // ---------------------------------------------------------------------------------------------
 // void putsU2(char *s)
-//   Sends a text line to the PC over UART2, followed by a new line.
+//   Test stand-in for the UART: throws the text away.
 // ---------------------------------------------------------------------------------------------
 void putsU2(char *s){ (void)s; }
 static int fails=0;

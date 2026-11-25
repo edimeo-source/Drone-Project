@@ -4,7 +4,7 @@ Pairs with: **seesaw single-file code, SewSaw step 2-3**
 
 | File | What it is |
 |---|---|
-| `pid_tuner.py` | The tuner program (Python 3 + Tkinter/matplotlib GUI). |
+| `pid_tuner.py` | The tuner program (Python 3, PySide6 + pyqtgraph GUI). |
 | `run_tuner.bat` | Windows launcher: double-click it (installs what it needs the first time). |
 
 Run it on the PC that is connected to the board (USB serial, or Bluetooth for the BLE versions).

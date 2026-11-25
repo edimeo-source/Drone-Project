@@ -3,8 +3,9 @@
  *  File    : firmware/03_drone/v2.0_phone_app_relay_heartbeat/host_tests/stub/p32xxxx.h
  *  What    : Host test support: stand-in PIC32 register declarations.
  *  Version : v2.0   |   Date: 2026-11-23
- *  Status  : CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24).
- *            Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75).
+ *  Status  : Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24). Host
+ *            tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75). Replaced
+ *            by v3.0 (two PIDs).
  *  Runs on : a PC (gcc), not the PIC32. Start it with host_tests/run_tests.sh
  * ---------------------------------------------------------------------------------------------
  *  TYPES IN THIS FILE: __ANSELBbits_t, __ANSELGbits_t, __ANSELHbits_t, __CNPUBbits_t,

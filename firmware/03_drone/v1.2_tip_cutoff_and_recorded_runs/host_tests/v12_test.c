@@ -22,7 +22,7 @@ extern volatile int data_complete;
 extern int check_count;
 // ---------------------------------------------------------------------------------------------
 // void putsU2(char *s)
-//   Sends a text line to the PC over UART2, followed by a new line.
+//   Test stand-in for the UART: throws the text away.
 // ---------------------------------------------------------------------------------------------
 void putsU2(char *s){ (void)s; }
 static int fails=0;

@@ -4,8 +4,9 @@
  *  What    : Host test: arming, relay, heartbeat, motor output and PC data (runs on a PC with
  *            gcc).
  *  Version : v2.0   |   Date: 2026-11-23
- *  Status  : CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24).
- *            Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75).
+ *  Status  : Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24). Host
+ *            tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75). Replaced
+ *            by v3.0 (two PIDs).
  *  Runs on : a PC (gcc), not the PIC32. Start it with host_tests/run_tests.sh
  * ---------------------------------------------------------------------------------------------
  *  FUNCTIONS IN THIS FILE (each has a title block above it): putsU2(), tick(), main()
@@ -24,7 +25,7 @@ extern float data_angle[];
 static int nlines=0; static char lastline[160];
 // ---------------------------------------------------------------------------------------------
 // void putsU2(char *s)
-//   Sends a text line to the PC over UART2, followed by a new line.
+//   Test stand-in for the UART: counts the lines the firmware prints and keeps the last one.
 // ---------------------------------------------------------------------------------------------
 void putsU2(char *s){ nlines++; strncpy(lastline,s,159); }
 static int fails=0;

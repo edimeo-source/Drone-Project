@@ -12,3 +12,6 @@ Thumbs.db
 *.pem
 *.jks
 *.keystore
+
+# host-test output (made by run_tests.sh, read by the tuner / app tests)
+fw_out/

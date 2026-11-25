@@ -282,7 +282,7 @@ class DemoBackend:
         pass
 
     # ---- DemoBackend.set_gains(self, kp, ki, kd) ---------------------------------------------
-    #      Sends new gains: K,kp,ki,kd.
+    #      Demo: the simulated seesaw uses the new gains at once and confirms them.
     def set_gains(self, kp, ki, kd):
         self.sim.kp, self.sim.ki, self.sim.kd = kp, ki, kd
         self.events.append(("ack", (kp, ki, kd)))

@@ -1,13 +1,21 @@
-# Drone firmware: Drone.X v0.1 to v2.0
+# Drone firmware: Drone.X v0.1 to v3.0
 
 Each folder is a complete MPLAB X project (`Drone.X`). v0.2 is source only.
 v1.1 and later also have **host tests**: they run the firmware logic on a PC with gcc (`sh host_tests/run_tests.sh`).
 
-Control is the professor's first-stage plan:
+**v0.1 to v2.0** use the professor's first-stage plan:
 
 - one PID on **pitch**;
 - front pair (ESC 1 + 2) = base + u;
 - back pair (ESC 3 + 4) = base - u.
+
+**v3.0** follows his PID notes (Nov 25):
+
+- two PIDs: roll gives RC, pitch gives PC;
+- each ESC gets its own pulse: FL = T + PC + RC, FR = T + PC - RC, RL = T - PC + RC, RR = T - PC - RC;
+- tune one axis at a time with the other correction at 0, then both.
+
+See [`v3.0_two_pid_roll_pitch/HOW_TO_RUN.md`](v3.0_two_pid_roll_pitch/HOW_TO_RUN.md).
 
 | Version | Date | What changed | Status |
 |---|---|---|---|
@@ -21,4 +29,5 @@ Control is the professor's first-stage plan:
 - A re-entry guard.
 - DISARMED goes to every link. | Host tests pass. Not built with XC32. |
 | [`v1.2_tip_cutoff_and_recorded_runs`](v1.2_tip_cutoff_and_recorded_runs) | 2026-11-22 | 75 deg tip cutoff. Every step test is recorded first and sent after the motors stop (the professor's rule). | Host tests pass. Not built with XC32. |
-| [`v2.0_phone_app_relay_heartbeat`](v2.0_phone_app_relay_heartbeat) | 2026-11-23 | Phone app over Bluetooth. Simple blocking Bluefruit driver that shares SPI1 IMU-first. Relay kill. 500 ms heartbeat. Step-test arrays go to the phone. **Current.** | CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24). Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75). |
+| [`v2.0_phone_app_relay_heartbeat`](v2.0_phone_app_relay_heartbeat) | 2026-11-23 | Phone app over Bluetooth. Simple blocking Bluefruit driver that shares SPI1 IMU-first. Relay kill. 500 ms heartbeat. Step-test arrays go to the phone. | Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24). Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75). Replaced by v3.0 (two PIDs). |
+| [`v3.0_two_pid_roll_pitch`](v3.0_two_pid_roll_pitch) | 2026-11-25 | Professor's notes: roll PID + pitch PID, each ESC its own pulse ($T\pm PC\pm RC$), one axis at a time (`A,1` / `A,2` / `A,3`), one throttle, soft start, per-motor trims, 60 deg cutoff. **Current.** | CURRENT. Built from v2.0 (which builds and flew on the tether). Host tests pass (78 checks, including a simulated flight with the real 4 ms loop). Not yet built in MPLAB or flown. |
