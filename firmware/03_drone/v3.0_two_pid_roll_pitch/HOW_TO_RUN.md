@@ -12,8 +12,8 @@ Firmware 3.0 follows the professor's PID notes: **PID 1 = roll, PID 2 = pitch**,
 | `HOW_TO_RUN.md` | This file. |
 
 The tools for 3.0:
-- **Phone app 3.0:** [`tools/android_drone_tuner/v3.0_two_axis_2026-11-25_CURRENT`](../../../tools/android_drone_tuner/v3.0_two_axis_2026-11-25_CURRENT) (`DroneTuner.apk`).
-- **PC tuner v7:** [`tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25_CURRENT`](../../../tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25_CURRENT) (USB serial or Bluetooth).
+- **Phone app 3.0:** [`tools/android_drone_tuner/v3.0_two_axis_2026-11-25`](../../../tools/android_drone_tuner/v3.0_two_axis_2026-11-25) (`DroneTuner.apk`).
+- **PC tuner v7:** [`tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25`](../../../tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25) (USB serial or Bluetooth).
 
 The 2.0 app and tuner v6 can't select an axis or send roll gains.
 

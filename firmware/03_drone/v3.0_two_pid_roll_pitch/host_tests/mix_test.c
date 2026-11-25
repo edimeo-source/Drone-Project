@@ -4,9 +4,9 @@
  *  What    : Host test: the two PIDs, the 4-motor mixer signs, one axis at a time, every v3.0
  *            command, and the step-test dumps.
  *  Version : v3.0   |   Date: 2026-11-25
- *  Status  : CURRENT. Built from v2.0 (which builds and flew on the tether). Host tests pass
- *            (78 checks, including a simulated flight with the real 4 ms loop). Not yet built
- *            in MPLAB or flown.
+ *  Status  : Builds in MPLAB X with XC32 (built on the laptop Nov 25). The drone spinning
+ *            counterclockwise on the tether led to v3.1. Host tests pass (78 checks, including
+ *            a simulated flight with the real 4 ms loop).
  *  Runs on : a PC (gcc), not the PIC32. Start it with host_tests/run_tests.sh
  * ---------------------------------------------------------------------------------------------
  *  FUNCTIONS IN THIS FILE (each has a title block above it): save_dump(), putsU2(), tick(),

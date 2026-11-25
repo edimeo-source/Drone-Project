@@ -1,0 +1,1 @@
+v3.1 - live +/- per motor (O command, app buttons) on top of v3.0 (roll PID + pitch PID). Based on v2.0.

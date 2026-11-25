@@ -2,13 +2,13 @@
 # Rebuild DroneTuner.apk: javac -> dx (dex) -> aapt2 (manifest + icon) -> pack + align -> sign v1/v2/v3 -> verify
 set -e
 cd /home/claude/apkbuild
-APP=${APP:-/home/claude/v3/android_app/app/src/main}
+APP=${APP:-/home/claude/v31/android_app/app/src/main}
 AAPT2=pkgs/aapt/package/bin/x64/linux/aapt2
 rm -rf out /tmp/jc && mkdir -p out/res /tmp/jc
 javac -Xlint:-options -source 8 -target 8 -bootclasspath pkgs/android-33.jar -d /tmp/jc $APP/java/edu/dtcc/elc275/tuner/MainActivity.java 2>&1 | grep -v "JAVA_TOOL\|^Note" || true
 java -jar dxbuild/dx.jar --dex --min-sdk-version=24 --output=out/classes.dex /tmp/jc 2>&1 | grep -v JAVA_TOOL || true
 $AAPT2 compile --dir $APP/res -o out/res/
-$AAPT2 link -o out/base.apk -I pkgs/android-33.jar --manifest $APP/AndroidManifest.xml out/res/*.flat --min-sdk-version 24 --target-sdk-version 33 --version-code 3 --version-name 3.0
+$AAPT2 link -o out/base.apk -I pkgs/android-33.jar --manifest $APP/AndroidManifest.xml out/res/*.flat --min-sdk-version 24 --target-sdk-version 33 --version-code 4 --version-name 3.1
 python3 -I scripts/pack.py out/base.apk out/classes.dex out/unsigned.apk > /dev/null
 node scripts/sign.mjs out/unsigned.apk out/DroneTuner.apk keys/key.pem keys/cert.pem
 python3 -I -c "import sys; sys.path.insert(0,'verify'); sys.argv=['apksigtool','verify','out/DroneTuner.apk']; import apksigtool; sys.exit(apksigtool.main())" 2>&1 | grep -v PROTOTYPE

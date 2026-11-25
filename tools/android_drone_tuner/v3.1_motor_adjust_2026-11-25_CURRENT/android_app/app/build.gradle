@@ -1,0 +1,19 @@
+// Plain Android, no extra libraries. Android Studio: File > Open this folder, then Build > Build APK(s).
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace 'edu.dtcc.elc275.tuner'
+    compileSdk 33
+    defaultConfig {
+        applicationId "edu.dtcc.elc275.tuner"
+        minSdk 24
+        targetSdk 33
+        versionCode 4
+        versionName "3.1"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}

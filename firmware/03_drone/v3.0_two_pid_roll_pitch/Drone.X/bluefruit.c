@@ -4,9 +4,9 @@
  *  What    : Adafruit Bluefruit LE SPI Friend driver (SDEP over SPI1, shared with the IMU): the
  *            phone link.
  *  Version : v3.0   |   Date: 2026-11-25
- *  Status  : CURRENT. Built from v2.0 (which builds and flew on the tether). Host tests pass
- *            (78 checks, including a simulated flight with the real 4 ms loop). Not yet built
- *            in MPLAB or flown.
+ *  Status  : Builds in MPLAB X with XC32 (built on the laptop Nov 25). The drone spinning
+ *            counterclockwise on the tether led to v3.1. Host tests pass (78 checks, including
+ *            a simulated flight with the real 4 ms loop).
  *  Board   : PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK,
  *            60 MHz PBCLK)
  * ---------------------------------------------------------------------------------------------

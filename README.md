@@ -30,10 +30,10 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 
 | What | Where |
 |---|---|
-| Drone firmware (MPLAB X project) | [`firmware/03_drone/v3.0_two_pid_roll_pitch/Drone.X`](firmware/03_drone/v3.0_two_pid_roll_pitch/Drone.X) |
-| How to run v3.0: tune roll, then pitch, then both | [`firmware/03_drone/v3.0_two_pid_roll_pitch/HOW_TO_RUN.md`](firmware/03_drone/v3.0_two_pid_roll_pitch/HOW_TO_RUN.md) |
-| PC PID tuner (USB or Bluetooth) | [`tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25_CURRENT`](tools/pc_pid_tuner/v7_ble_two_axis_2026-11-25_CURRENT) |
-| Android app (install the APK) | [`tools/android_drone_tuner/v3.0_two_axis_2026-11-25_CURRENT`](tools/android_drone_tuner/v3.0_two_axis_2026-11-25_CURRENT) |
+| Drone firmware (MPLAB X project) | [`firmware/03_drone/v3.1_motor_adjust_buttons/Drone.X`](firmware/03_drone/v3.1_motor_adjust_buttons/Drone.X) |
+| How to run v3.1: tune roll, then pitch, then both; stop a spin with the motor adjust buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md`](firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md) |
+| PC PID tuner (USB or Bluetooth) | [`tools/pc_pid_tuner/v8_ble_motor_adjust_2026-11-25_CURRENT`](tools/pc_pid_tuner/v8_ble_motor_adjust_2026-11-25_CURRENT) |
+| Android app (install the APK) | [`tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT`](tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT) |
 | Electronics tray to print | [`cad/06_box_v4_1_tray_CURRENT`](cad/06_box_v4_1_tray_CURRENT) (+ collar v3.1 from [`cad/04_box_v3_tray_and_collar`](cad/04_box_v3_tray_and_collar)) |
 | Sensor deck to print | [`cad/sensor_deck/v3_1_CURRENT`](cad/sensor_deck/v3_1_CURRENT) |
 | Full J12 pinout, every version | [`docs/PINOUT.md`](docs/PINOUT.md) |
@@ -57,7 +57,8 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | Run the seesaw PID | [`02_seesaw/03_SewSaw_step2-3`](firmware/02_seesaw/03_SewSaw_step2-3) |
 | Find the liftoff pulse | [`01_bench_tests/12_liftoff_throttle_test`](firmware/01_bench_tests/12_liftoff_throttle_test) |
 | Match the 4 motors (trims) | [`01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
-| Fly / tune the drone | [`03_drone/v3.0_two_pid_roll_pitch`](firmware/03_drone/v3.0_two_pid_roll_pitch) |
+| Fly / tune the drone | [`03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |
+| **Stop the drone spinning on the tether** (motor adjust buttons) | [`03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md`](firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md) section 5 |
 
 ## Every version, in order
 
@@ -92,8 +93,10 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-25 | Bench: motor ID test | PuTTY command spins the motor you name (RR 1150): wiring + direction check | [`firmware/01_bench_tests/10_motor_id_test`](firmware/01_bench_tests/10_motor_id_test) |
 | 2026-11-25 | Bench: motor calibration test | Kitchen-scale thrust sweep, prints per-motor pulse trims | [`firmware/01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
 | 2026-11-25 | Bench: liftoff throttle test | Full-range (to 2000 us) PuTTY control with +/- steps to find the liftoff pulse | [`firmware/01_bench_tests/12_liftoff_throttle_test`](firmware/01_bench_tests/12_liftoff_throttle_test) |
-| 2026-11-25 | **Drone.X v3.0 (current)** | Professor's notes: roll PID + pitch PID, 4 different pulses, tune one axis at a time, then both; soft start, motor trims | [`firmware/03_drone/v3.0_two_pid_roll_pitch`](firmware/03_drone/v3.0_two_pid_roll_pitch) |
+| 2026-11-25 | Drone.X v3.0 | Professor's notes: roll PID + pitch PID, 4 different pulses, tune one axis at a time, then both; soft start, motor trims | [`firmware/03_drone/v3.0_two_pid_roll_pitch`](firmware/03_drone/v3.0_two_pid_roll_pitch) |
 | 2026-11-25 | PC tuner v7 + Android app 3.0 | Axis select, roll and pitch gains, throttle T, Hold row for the demo | [`tools`](tools) |
+| 2026-11-25 | **Drone.X v3.1 (current)** | The drone spun counterclockwise on the tether: live + / - per motor (O command), turn CW / CCW buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |
+| 2026-11-25 | PC tuner v8 + Android app 3.1 | Motor adjust buttons for the v3.1 O command | [`tools`](tools) |
 
 ## Repo layout
 
@@ -103,10 +106,10 @@ Drone-Project/
 │   ├── 00_flight_controller_draft/   Nov 4 practice flight controller (I2C IMU, 400 Hz ESC frame)
 │   ├── 01_bench_tests/               one-file test programs: ESCs, motors, IMU, relay, motor ID, calibration, liftoff
 │   ├── 02_seesaw/                    the 2-motor seesaw rig (single file, then SewSaw.X)
-│   └── 03_drone/                     Drone.X v0.1 -> v3.0 (each a complete MPLAB X project)
+│   └── 03_drone/                     Drone.X v0.1 -> v3.1 (each a complete MPLAB X project)
 ├── tools/
-│   ├── pc_pid_tuner/                 PC tuner GUI, v1 -> v7 (which firmware each pairs with)
-│   └── android_drone_tuner/          phone app, v2.0 and v3.0 (APK + source)
+│   ├── pc_pid_tuner/                 PC tuner GUI, v1 -> v8 (which firmware each pairs with)
+│   └── android_drone_tuner/          phone app, v2.0, v3.0 and v3.1 (APK + source)
 ├── cad/                              every printed part: STL to print, STEP to edit, renders, CadQuery source
 └── docs/                             pinout (every version), wiring diagrams, pinout sheets, history
 ```
@@ -132,7 +135,7 @@ Drone-Project/
 // ---------------------------------------------------------------------------------------------
 ```
 
-## Current J12 pinout (v3.0, same wiring as v2.0)
+## Current J12 pinout (v3.1, same wiring as v2.0)
 
 ```text
 IMU LSM6DSO (SPI1 mode 3, CS on pin 16)
@@ -201,6 +204,7 @@ The left pair gets $+RC$ because roll $+$ = left side up: if the left is too hig
 
 In PID mode each pulse is kept at or above $1100\ \mu\text{s}$ so the props keep turning. Every pulse is capped at $2000\ \mu\text{s}$.
 In v3.0 each motor's trim from bench test 11 is applied last: $p'=1000+g\,(p-1000)+o$.
+v3.1 then adds the live offset $a_n$ from the app's motor adjust buttons ($|a_n|\le 200\ \mu\text{s}$). The turn buttons move diagonal pairs: $a_{FL}=a_{RR}=+d$, $a_{FR}=a_{RL}=-d$. The left pair and the front pair keep the same sum, so only the yaw twist changes.
 
 **Safety (v2.0 and v3.0).** The motors go off and the relay opens on any of these:
 

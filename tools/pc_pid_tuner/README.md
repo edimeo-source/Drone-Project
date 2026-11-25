@@ -8,8 +8,8 @@ It is a Python GUI. It has:
 - recorded step tests with rise time, overshoot, settling and error;
 - a demo simulator that needs no board.
 
-v1-v3 talk over the USB serial port. v4-v7 can also use Bluetooth LE. Use the version that matches the firmware
-(v7 is the only one that can select the axis and send roll gains, for Drone.X v3.0):
+v1-v3 talk over the USB serial port. v4-v8 can also use Bluetooth LE. Use the version that matches the firmware
+(v7 and v8 can select the axis and send roll gains, for Drone.X v3.x; v8 also has the motor adjust buttons for v3.1):
 
 | Version | Date | Pairs with firmware |
 |---|---|---|
@@ -19,4 +19,5 @@ v1-v3 talk over the USB serial port. v4-v7 can also use Bluetooth LE. Use the ve
 | [`v4_ble_2026-11-20`](v4_ble_2026-11-20) | 2026-11-20 | Drone.X v1.0 |
 | [`v5_ble_2026-11-20`](v5_ble_2026-11-20) | 2026-11-20 | Drone.X v1.1 and v1.2 |
 | [`v6_ble_2026-11-23`](v6_ble_2026-11-23) | 2026-11-23 | Drone.X v2.0 |
-| [`v7_ble_two_axis_2026-11-25_CURRENT`](v7_ble_two_axis_2026-11-25_CURRENT) | 2026-11-25 | Drone.X v3.0 (current) |
+| [`v7_ble_two_axis_2026-11-25`](v7_ble_two_axis_2026-11-25) | 2026-11-25 | Drone.X v3.0 (also runs v3.1, without the motor adjust buttons) |
+| [`v8_ble_motor_adjust_2026-11-25_CURRENT`](v8_ble_motor_adjust_2026-11-25_CURRENT) | 2026-11-25 | Drone.X v3.1 (current) |
