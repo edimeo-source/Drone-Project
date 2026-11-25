@@ -4,8 +4,8 @@
  *  What    : Host test: arming, relay, heartbeat, motor output and PC data (runs on a PC with
  *            gcc).
  *  Version : v2.0   |   Date: 2026-11-23
- *  Status  : CURRENT. Host tests pass (simulated Bluefruit, arming, relay, heartbeat, cutoff).
- *            Not yet compiled with XC32 or flown.
+ *  Status  : CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24).
+ *            Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75).
  *  Runs on : a PC (gcc), not the PIC32. Start it with host_tests/run_tests.sh
  * ---------------------------------------------------------------------------------------------
  *  FUNCTIONS IN THIS FILE (each has a title block above it): putsU2(), tick(), main()

@@ -21,4 +21,4 @@ Control is the professor's first-stage plan:
 - A re-entry guard.
 - DISARMED goes to every link. | Host tests pass. Not built with XC32. |
 | [`v1.2_tip_cutoff_and_recorded_runs`](v1.2_tip_cutoff_and_recorded_runs) | 2026-11-22 | 75 deg tip cutoff. Every step test is recorded first and sent after the motors stop (the professor's rule). | Host tests pass. Not built with XC32. |
-| [`v2.0_phone_app_relay_heartbeat`](v2.0_phone_app_relay_heartbeat) | 2026-11-23 | Phone app over Bluetooth. Simple blocking Bluefruit driver that shares SPI1 IMU-first. Relay kill. 500 ms heartbeat. Step-test arrays go to the phone. **Current.** | CURRENT. Host tests pass (simulated Bluefruit, arming, relay, heartbeat, cutoff). Not yet compiled with XC32 or flown. |
+| [`v2.0_phone_app_relay_heartbeat`](v2.0_phone_app_relay_heartbeat) | 2026-11-23 | Phone app over Bluetooth. Simple blocking Bluefruit driver that shares SPI1 IMU-first. Relay kill. 500 ms heartbeat. Step-test arrays go to the phone. **Current.** | CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24). Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75). |

@@ -43,6 +43,8 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 
 | ...do this | Open this (single file: copy it into `main.c`, put `config.bits` next to it) |
 |---|---|
+| **Find which motor is which / check wiring and spin direction** (type `RR 1150` in PuTTY) | [`01_bench_tests/10_motor_id_test`](firmware/01_bench_tests/10_motor_id_test) |
+| **Make all 4 motors push the same** (kitchen-scale sweep, prints trims) | [`01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
 | Spin **one** motor (ESC 1) slowly | [`01_bench_tests/06_motor_spin_test_esc1_only`](firmware/01_bench_tests/06_motor_spin_test_esc1_only) |
 | Spin all 4 motors **one at a time** (check directions) | [`01_bench_tests/05_motor_spin_test_one_at_a_time`](firmware/01_bench_tests/05_motor_spin_test_one_at_a_time) |
 | Spin all 4 motors **together** | [`01_bench_tests/08_motor_test_all4_together`](firmware/01_bench_tests/08_motor_test_all4_together) |
@@ -84,6 +86,8 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-23 | **Drone.X v2.0 (current)** | Phone app over Bluetooth, relay kill, 500 ms heartbeat, step-test arrays to the phone | [`firmware/03_drone/v2.0_phone_app_relay_heartbeat`](firmware/03_drone/v2.0_phone_app_relay_heartbeat) |
 | 2026-11-23 | PC tuner v6 + Android app | Tuners for the v2.0 protocol | [`tools`](tools) |
 | 2026-11-24 | CAD: tray v4, **tray v4.1 (current)** | Relay bay in the back lobe, slot for the battery bullet leads | [`cad/06_box_v4_1_tray_CURRENT`](cad/06_box_v4_1_tray_CURRENT) |
+| 2026-11-25 | Bench: motor ID test | PuTTY command spins the motor you name (RR 1150): wiring + direction check | [`firmware/01_bench_tests/10_motor_id_test`](firmware/01_bench_tests/10_motor_id_test) |
+| 2026-11-25 | Bench: motor calibration test | Kitchen-scale thrust sweep, prints per-motor pulse trims | [`firmware/01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
 
 ## Repo layout
 
@@ -91,7 +95,7 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 Drone-Project/
 ├── firmware/
 │   ├── 00_flight_controller_draft/   Nov 4 practice flight controller (I2C IMU, 400 Hz ESC frame)
-│   ├── 01_bench_tests/               one-file test programs: ESCs, motors, IMU, relay
+│   ├── 01_bench_tests/               one-file test programs: ESCs, motors, IMU, relay, motor ID, motor calibration
 │   ├── 02_seesaw/                    the 2-motor seesaw rig (single file, then SewSaw.X)
 │   └── 03_drone/                     Drone.X v0.1 -> v2.0 (each a complete MPLAB X project)
 ├── tools/

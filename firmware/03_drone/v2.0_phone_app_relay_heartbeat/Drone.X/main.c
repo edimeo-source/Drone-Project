@@ -4,8 +4,8 @@
  *  What    : Program entry: start-up, then the main loop (PuTTY keys, tuner/phone commands,
  *            status).
  *  Version : v2.0   |   Date: 2026-11-23
- *  Status  : CURRENT. Host tests pass (simulated Bluefruit, arming, relay, heartbeat, cutoff).
- *            Not yet compiled with XC32 or flown.
+ *  Status  : CURRENT. Builds in MPLAB X with XC32 and was flown on the tethered bench (Nov 24).
+ *            Host tests pass. The copy on the laptop has TIP_LIMIT 60 (this repo copy: 75).
  *  Board   : PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK,
  *            60 MHz PBCLK)
  * ---------------------------------------------------------------------------------------------
