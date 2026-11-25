@@ -50,7 +50,7 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | Spin **one** motor (ESC 1) slowly | [`01_bench_tests/06_motor_spin_test_esc1_only`](firmware/01_bench_tests/06_motor_spin_test_esc1_only) |
 | Spin all 4 motors **one at a time** (check directions) | [`01_bench_tests/05_motor_spin_test_one_at_a_time`](firmware/01_bench_tests/05_motor_spin_test_one_at_a_time) |
 | Spin all 4 motors **together** | [`01_bench_tests/08_motor_test_all4_together`](firmware/01_bench_tests/08_motor_test_all4_together) |
-| Calibrate the ESCs | [`01_bench_tests/07_esc_calibrate`](firmware/01_bench_tests/07_esc_calibrate) |
+| **Calibrate the ESCs** (same 1.0-2.0 ms range on all 4; through the relay) | [`01_bench_tests/13_esc_calibrate_relay`](firmware/01_bench_tests/13_esc_calibrate_relay) |
 | Run 2 ESCs to full speed | [`01_bench_tests/01_esc_full_speed`](firmware/01_bench_tests/01_esc_full_speed) |
 | Check the IMU wiring (WHO_AM_I = 0x6C) | [`01_bench_tests/04_imu_wiring_test`](firmware/01_bench_tests/04_imu_wiring_test) |
 | Read IMU angles | [`01_bench_tests/03_imu_roll_pitch_yaw_spi`](firmware/01_bench_tests/03_imu_roll_pitch_yaw_spi) |
@@ -94,6 +94,7 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-25 | Bench: motor ID test | PuTTY command spins the motor you name (RR 1150): wiring + direction check | [`firmware/01_bench_tests/10_motor_id_test`](firmware/01_bench_tests/10_motor_id_test) |
 | 2026-11-25 | Bench: motor calibration test | Kitchen-scale thrust sweep, prints per-motor pulse trims | [`firmware/01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
 | 2026-11-25 | Bench: liftoff throttle test | Full-range (to 2000 us) PuTTY control with +/- steps to find the liftoff pulse | [`firmware/01_bench_tests/12_liftoff_throttle_test`](firmware/01_bench_tests/12_liftoff_throttle_test) |
+| 2026-11-25 | Bench: ESC calibrate through the relay | 07 with the relay: 2.0 ms first, then RK4 powers the ESCs | [`firmware/01_bench_tests/13_esc_calibrate_relay`](firmware/01_bench_tests/13_esc_calibrate_relay) |
 | 2026-11-25 | Drone.X v3.0 | Professor's notes: roll PID + pitch PID, 4 different pulses, tune one axis at a time, then both; soft start, motor trims | [`firmware/03_drone/v3.0_two_pid_roll_pitch`](firmware/03_drone/v3.0_two_pid_roll_pitch) |
 | 2026-11-25 | PC tuner v7 + Android app 3.0 | Axis select, roll and pitch gains, throttle T, Hold row for the demo | [`tools`](tools) |
 | 2026-11-25 | **Drone.X v3.1 (current)** | The drone spun counterclockwise on the tether: live + / - per motor (O command), turn CW / CCW buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |

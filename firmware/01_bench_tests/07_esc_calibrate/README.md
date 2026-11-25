@@ -4,7 +4,7 @@
 |---|---|
 | **Version** | bench test |
 | **Date** | 2026-11-18 |
-| **Status** | Calibration program written Nov 18 (build it with Make and Program Device, not Debug). No result is logged in the project notes. |
+| **Status** | Calibration program written Nov 18 (build it with Make and Program Device, not Debug). No result is logged in the project notes. Since the relay went in (Nov 19) it can no longer power the ESCs: use 13_esc_calibrate_relay. |
 | **Board** | PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK, 60 MHz PBCLK) |
 
 ## J12 pinout for this version

@@ -44,7 +44,7 @@ The PIC can't measure thrust, so you read a kitchen scale and type the number in
 
 **Setup**
 
-- Run `07_esc_calibrate` first, so all 4 ESCs share the same 1.0-2.0 ms range.
+- Run `13_esc_calibrate_relay` first, so all 4 ESCs share the same 1.0-2.0 ms range (07 doesn't work with the relay in).
 - Use a full battery.
 - **Props on.** Put the drone centered on the scale (on a board if the legs don't fit). Nothing should be under the props or touching the drone.
 - Let the USB cable hang loose.

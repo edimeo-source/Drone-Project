@@ -238,6 +238,23 @@ PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
   pins 8 (RG6) and 10 (RB14) are the PC link: never wire them, never press SW3
 ```
 
+### ESC throttle calibration through the motor-power relay - all 4 ESCs at once  (2026-11-25)
+
+[`firmware/01_bench_tests/13_esc_calibrate_relay`](../firmware/01_bench_tests/13_esc_calibrate_relay)
+
+```text
+ESC 1 front-left .. signal J12 pin 11 (RD0 -> OC1)   ground pin 14
+ESC 2 front-right . signal J12 pin 12 (RF2 -> OC2)   ground pin 20
+ESC 3 back-left ... signal J12 pin 21 (RF4 -> OC3)   ground pin 25
+ESC 4 back-right .. signal J12 pin 19 (RF5 -> OC4)   ground pin 30
+ESC red 5 V wires . NOT connected (ESCs are powered by the battery/PDB)
+Motor-power relay . CH1 = J12 pin 33 (RK4), HIGH = motor power ON, LOW/reset = power cut
+Power/relay board <-> kit: pin 2 (+5 V from the 7805 INTO the kit), pin 33 (RK4), pin 34 (GND)
+Kit LEDs LED1-3 = RH0-RH2   SW1 = RB12   SW2 = RB13
+PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
+  pins 8 (RG6) and 10 (RB14) are the PC link: never wire them, never press SW3
+```
+
 ### Seesaw PID - single file (I2C IMU, 2 motors)  (2026-11-12)
 
 [`firmware/02_seesaw/01_seesaw_pid_single_file`](../firmware/02_seesaw/01_seesaw_pid_single_file)
