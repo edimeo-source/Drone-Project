@@ -1,0 +1,4 @@
+watertight: True
+size: 164.2 x 28.5 x 150.0 mm (x y z on the bed)
+volume 17.12 cm3 -> about 20.8 g PLA at 100 % infill
+overhang flatter than 43 deg (needs support): 0.1 mm2

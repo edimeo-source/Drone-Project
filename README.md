@@ -36,6 +36,7 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | Android app (install the APK) | [`tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT`](tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT) |
 | Electronics tray to print | [`cad/06_box_v4_1_tray_CURRENT`](cad/06_box_v4_1_tray_CURRENT) (+ collar v3.1 from [`cad/04_box_v3_tray_and_collar`](cad/04_box_v3_tray_and_collar)) |
 | Sensor deck to print | [`cad/sensor_deck/v3_1_CURRENT`](cad/sensor_deck/v3_1_CURRENT) |
+| Replacement landing leg to print | [`cad/landing_leg/v1_CURRENT`](cad/landing_leg/v1_CURRENT) |
 | Full J12 pinout, every version | [`docs/PINOUT.md`](docs/PINOUT.md) |
 | Wiring diagrams | [`docs/wiring`](docs/wiring) |
 
@@ -97,6 +98,7 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-25 | PC tuner v7 + Android app 3.0 | Axis select, roll and pitch gains, throttle T, Hold row for the demo | [`tools`](tools) |
 | 2026-11-25 | **Drone.X v3.1 (current)** | The drone spun counterclockwise on the tether: live + / - per motor (O command), turn CW / CCW buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |
 | 2026-11-25 | PC tuner v8 + Android app 3.1 | Motor adjust buttons for the v3.1 O command | [`tools`](tools) |
+| 2026-11-25 | CAD: replacement landing leg v1 | A stock leg broke on the tether: printed copy on the measured bracket, about 20.8 g | [`cad/landing_leg/v1_CURRENT`](cad/landing_leg/v1_CURRENT) |
 
 ## Repo layout
 

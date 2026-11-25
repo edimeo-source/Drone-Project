@@ -10,13 +10,14 @@ Every part folder has the same layout:
 | `src/` | The CadQuery (Python) source. Every size is a parameter. |
 | `README.txt` | The original notes, with print settings and fit checks. |
 
-The printer is a Creality K1 SE with Hyper PLA and a 0.4 mm nozzle.
+Parts up to Nov 20 were printed on a Creality K1 SE (Hyper PLA, 0.4 mm nozzle); later ones on a Creality K2 Pro (standard PLA).
 
 **Print now:**
 
 - tray v4.1 (`06_box_v4_1_tray_CURRENT/print/tray_v4_1.stl`);
 - collar v3.1 (`04_box_v3_tray_and_collar/print/collar_v3_1.stl`);
-- sensor deck v3.1 (`sensor_deck/v3_1_CURRENT/print/`, pick the snug / normal / loose fit).
+- sensor deck v3.1 (`sensor_deck/v3_1_CURRENT/print/`, pick the snug / normal / loose fit);
+- a replacement landing leg when one breaks (`landing_leg/v1_CURRENT/print/f450_leg_print.stl`, bracket face down, no supports, 100 % infill).
 
 Frame axes in the models: +X = true right, +Y = true front, z = 0 = the underside of the bottom plate.
 Coordinates differ in the early case v0, so see its README.
@@ -33,3 +34,4 @@ Coordinates differ in the early case v0, so see its README.
 | [`imu_adapter/v2`](imu_adapter/v2) | IMU slot adapter v2 | 2026-11-18 | Superseded by the sensor deck |
 | [`sensor_deck/v3`](sensor_deck/v3) | Sensor deck v3 (IMU + Bluefruit + hub strip) | 2026-11-18 | Superseded by v3.1 |
 | [`sensor_deck/v3_1_CURRENT`](sensor_deck/v3_1_CURRENT) | Sensor deck v3.1 | 2026-11-22 | CURRENT |
+| [`landing_leg/v1_CURRENT`](landing_leg/v1_CURRENT) | F450 replacement landing leg v1 | 2026-11-25 | CURRENT. Fits collar v3.1 / tray v4.1 / the plate (0 overlap at all 4 corners), prints without supports, about 20.8 g. Bracket from calipers; height, lean and weight from listings until checked on a good leg |

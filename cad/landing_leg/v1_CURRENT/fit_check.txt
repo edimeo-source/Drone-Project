@@ -1,0 +1,6 @@
+NEW F450 LEG fit check (4 corners)
+new legs vs collar v3.1 :    0.000 mm3
+new legs vs plate       :    0.000 mm3
+new legs vs tray v4.1   :    0.000 mm3
+top 20 mm: measured 44536 mm3, new 20976 mm3, common 19392 mm3
+lowest point of the leg: z = -150.0 mm; lowest box point (tray v4.1 / battery): z = -86.1 / -112.6
