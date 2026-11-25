@@ -1,0 +1,1 @@
+ELC275 BLE integration 1.2 - Nov 22 2026: 75 deg tip cutoff, professor's record-then-send rule for every run (see README).

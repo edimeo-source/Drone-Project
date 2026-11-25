@@ -1,0 +1,16 @@
+box outside 124 x 68 mm (with end plates 172 long), inside 120 x 64 x 45.6 mm
+box bottom z = -48.0, battery bottom z = -74.5 (below the bottom plate)
+PIC32 board: z -15.6 .. -14.0, x -56.0 .. 15.5; screw post at (-36.8, 0.3); board top to plate 14.0 mm
+box volume 74.8 cm3 -> about 56 g PLA (3 walls, 15% infill)
+overlap box vs kit: 0.000 mm3
+overlap box vs usb: 0.000 mm3
+overlap box vs j12: 0.000 mm3
+overlap box vs jumpers: 0.000 mm3
+overlap box vs ble: 0.000 mm3
+overlap box vs bat: 0.000 mm3
+overlap box vs relay: 0.000 mm3
+overlap box vs xt60: 0.000 mm3
+overlap box vs screw: 0.000 mm3
+overlap box vs bottom plate: 0.000 mm3
+keys above z=0: 168.0 mm3 (must sit inside the tab slots), key/plate clash 0.000 mm3
+overlap BLE vs placeholder power board: 0.000 mm3

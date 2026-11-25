@@ -1,0 +1,9 @@
+inside height 45.6 mm, case bottom at z = -48.0, battery bottom at z = -76.5
+case volume 70.8 cm3 -> about 54 g PETG at ~60% fill
+imu mount volume 6.7 cm3 -> about 9 g PETG
+overlap case vs plate: 0.000 mm3
+overlap PIC32 vs case: 0.000 mm3
+overlap Bluefruit vs case: 0.000 mm3
+overlap battery vs case: 0.000 mm3
+overlap IMU vs mount: 0.000 mm3
+key volume above z=0: 168.0 mm3; key/plate clash: 0.000 mm3

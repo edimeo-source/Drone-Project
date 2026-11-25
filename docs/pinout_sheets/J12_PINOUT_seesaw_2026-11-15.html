@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>J12 Universal Pinout</title>
+<style>
+:root{
+  --bg:#f6f6f3; --card:#ffffff; --ink:#1c1c1e; --muted:#66666c; --line:#dcdcd6; --board:#23412f; --boardline:#35634a;
+  --p33:#d93025; --p5:#e8710a; --gnd:#3c4043; --spi:#1a73e8; --pwm:#8e24aa; --i2c:#00897b;
+  --gpio:#c98a00; --led:#2e9d4a; --adc:#c2185b; --never:#d93025; --spare:#b9b9b4;
+  --chip-now:#1e8e3e; --chip-s3:#8e24aa; --chip-s5:#5e35b1; --chip-s6:#00796b;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141416; --card:#1d1d20; --ink:#ececee; --muted:#a0a0a8; --line:#34343a; --board:#1b3326; --boardline:#2f5a42;
+    --p33:#ff6b5e; --p5:#ff9a3d; --gnd:#9aa0a6; --spi:#6aa7ff; --pwm:#ce7ae0; --i2c:#3cc2b0;
+    --gpio:#f2c14e; --led:#5fd17a; --adc:#ff6fa6; --never:#ff6b5e; --spare:#6f6f75;
+    --chip-now:#5fd17a; --chip-s3:#ce7ae0; --chip-s5:#a68cff; --chip-s6:#3cc2b0;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141416; --card:#1d1d20; --ink:#ececee; --muted:#a0a0a8; --line:#34343a; --board:#1b3326; --boardline:#2f5a42;
+  --p33:#ff6b5e; --p5:#ff9a3d; --gnd:#9aa0a6; --spi:#6aa7ff; --pwm:#ce7ae0; --i2c:#3cc2b0;
+  --gpio:#f2c14e; --led:#5fd17a; --adc:#ff6fa6; --never:#ff6b5e; --spare:#6f6f75;
+  --chip-now:#5fd17a; --chip-s3:#ce7ae0; --chip-s5:#a68cff; --chip-s6:#3cc2b0;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 48px}
+.eyebrow{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:26px;line-height:1.2;margin:4px 0 8px}
+h2{font-size:19px;margin:34px 0 10px}
+h3{font-size:16px;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+p{margin:6px 0}
+.sub{color:var(--muted);max-width:760px}
+code,.mono{font-family:ui-monospace,Consolas,"Cascadia Mono",monospace;font-size:13px}
+.rule{border:2px solid var(--p33);border-radius:10px;padding:10px 14px;margin:14px 0;background:var(--card)}
+.rule b{color:var(--p33)}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 4px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:50%;display:inline-block;border:2px solid transparent}
+
+/* J12 header */
+.board{background:var(--board);border-radius:14px;padding:14px 10px;border:1px solid var(--boardline)}
+.btitle{color:#e6efe8;font-weight:600;text-align:center;margin-bottom:6px;font-size:14px}
+.bnote{color:#bcd3c3;text-align:center;font-size:12px;margin-bottom:10px}
+.row{display:grid;grid-template-columns:1fr 34px 34px 1fr;align-items:center;column-gap:8px;min-height:40px}
+.row + .row{border-top:1px dashed rgba(255,255,255,.08)}
+.lab{background:var(--card);border-radius:8px;padding:4px 8px;font-size:13px;line-height:1.25;border-left:4px solid var(--c,var(--spare))}
+.lab.l{text-align:right;border-left:none;border-right:4px solid var(--c,var(--spare))}
+.lab .dev{font-weight:600}
+.lab .sig{color:var(--muted);font-size:12px}
+.lab.dim{opacity:.62}
+.pin{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+     font:600 11px/1 ui-monospace,Consolas,monospace;color:#fff;background:var(--c,var(--spare));
+     border:2px solid #d4af37;justify-self:center}
+.pin.sq{border-radius:5px}
+.pin.never{background:#fff;color:var(--never);border:3px solid var(--never)}
+.pin.spare{background:transparent;color:#d9e6dc;border:2px dashed #d4af37}
+.pin.nc{background:transparent;color:#8fa596;border:2px dotted #8fa596}
+.chip{display:inline-block;font:700 10px/1 system-ui,sans-serif;letter-spacing:.04em;padding:3px 6px;border-radius:20px;
+      color:#fff;vertical-align:middle;margin:0 4px}
+.chip.now{background:var(--chip-now)} .chip.s3{background:var(--chip-s3)} .chip.s5{background:var(--chip-s5)}
+.chip.s6{background:var(--chip-s6)} .chip.never{background:var(--never)} .chip.spare,.chip.nc{background:var(--spare)}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;border-top:5px solid var(--c,var(--line))}
+.card ul{margin:6px 0 0;padding-left:18px}
+.card li{margin:3px 0}
+.tscroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}
+th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px}
+td.n{font-weight:700;white-space:nowrap}
+.need{font-size:13px;color:var(--muted);margin-top:8px}
+.need b{color:var(--ink)}
+.rules li{margin:5px 0}
+.log td{font-size:13px}
+.foot{margin-top:30px;color:var(--muted);font-size:12px}
+
+@media (max-width:620px){
+  .row{grid-template-columns:1fr 30px 30px 1fr;column-gap:5px}
+  .pin{width:27px;height:27px;font-size:10px}
+  .lab{font-size:12px;padding:3px 6px}
+  .lab .sig{font-size:11px}
+  .chip{display:none}
+}
+@media print{
+  :root{--bg:#fff;--card:#fff}
+  body{background:#fff}
+  .card,.board{break-inside:avoid}
+  h2{break-after:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">ELC 275-501 capstone · self-leveling quad · PIC32MZ EF Starter Kit · J12 40-pin header</div>
+  <h1>J12 universal pinout</h1>
+  <p class="sub">The one wiring reference for the whole project: what goes on every J12 pin, and what each part needs.
+     Version 1, Nov 16 2026. Pin choices are checked against Microchip's starter kit guide (DS70005230B, Table 2-3)
+     and the PIC32MZ EF datasheet (DS60001320H, Tables 12-2 and 12-3).</p>
+
+  <div class="rule"><b>This sheet is the rule.</b> Every wire goes where this sheet says, at every step.
+     If a pin ever has to change, change it here first (and add a line to the change log at the bottom),
+     then in <code>PINOUT_AND_PLAN.md</code>, <code>CLAUDE.md</code> and the code, all at once.</div>
+
+  <h2>The header</h2>
+  <div class="legend" id="legend"></div>
+  <div class="board">
+    <div class="btitle">J12 (2 × 20, on the back of the starter kit)</div>
+    <div class="bnote">Drawn with pin 1 at the top. Pin 1 has the square pad. Pin 2 is right across from pin 1, then 3-4, 5-6 and so on down the header.<br>
+      Odd pins are one row, even pins the other. Turn the board so its pin 1 matches this drawing.</div>
+    <div id="j12"></div>
+  </div>
+
+  <h2>What each part needs</h2>
+  <div class="grid">
+
+    <div class="card" style="--c:var(--spi)">
+      <h3>LSM6DSO IMU <span class="chip now">WIRED NOW</span></h3>
+      <div class="tscroll"><table>
+        <tr><th>IMU pad</th><th>J12</th><th>PIC32</th><th>Job</th></tr>
+        <tr><td>3V3</td><td class="n">1</td><td class="mono">+3.3 V</td><td>power</td></tr>
+        <tr><td>GND</td><td class="n">6</td><td class="mono">GND</td><td>ground</td></tr>
+        <tr><td>SCL</td><td class="n">23</td><td class="mono">RD1 = SCK1</td><td>SPI clock</td></tr>
+        <tr><td>SDA</td><td class="n">37</td><td class="mono">RD10 = SDO1</td><td>data PIC → IMU</td></tr>
+        <tr><td>SDO</td><td class="n">7</td><td class="mono">RA14 = SDI1</td><td>data IMU → PIC</td></tr>
+        <tr><td>CS</td><td class="n">16</td><td class="mono">RK1</td><td>low = talk to the IMU</td></tr>
+        <tr><td>INT1, INT2</td><td class="n">-</td><td>-</td><td>not connected</td></tr>
+      </table></div>
+      <div class="need"><b>Needs:</b> 3.3 V only, never 5 V (its limit is 3.6 V). SPI1 mode 3 at 2 MHz:
+        <code>SPI1CON=0x8060</code>, <code>SPI1BRG=14</code>, <code>RPD10R=5</code>, <code>SDI1R=13</code>.</div>
+      <div class="need"><b>Must do:</b> solder the SDO header pin. A loose SDO contact makes WHO_AM_I read 0x7F.</div>
+      <div class="need"><b>Mounting:</b> flat, text readable from the front. Drone: X arrow points to the nose.
+        Seesaw: X arrow points along the pivot rod, so the seesaw angle is roll.</div>
+    </div>
+
+    <div class="card" style="--c:var(--pwm)">
+      <h3>ESCs × 4 <span class="chip s3">STEP 3: ESC 1 + 2</span><span class="chip s5">STEP 5: ALL 4</span></h3>
+      <div class="tscroll"><table>
+        <tr><th>ESC</th><th>Motor</th><th>Signal</th><th>Ground</th><th>PIC32</th></tr>
+        <tr><td class="n">1</td><td>seesaw A (left) / drone front-left</td><td class="n">11</td><td class="n">14</td><td class="mono">RD0 · OC1 · RPD0R=12</td></tr>
+        <tr><td class="n">2</td><td>seesaw B (right) / drone front-right</td><td class="n">12</td><td class="n">20</td><td class="mono">RF2 · OC2 · RPF2R=11</td></tr>
+        <tr><td class="n">3</td><td>drone back-left</td><td class="n">21</td><td class="n">25</td><td class="mono">RF4 · OC3 · RPF4R=11</td></tr>
+        <tr><td class="n">4</td><td>drone back-right</td><td class="n">19</td><td class="n">30</td><td class="mono">RF5 · OC4 · RPF5R=11</td></tr>
+      </table></div>
+      <div class="need"><b>Each ESC lead has 3 wires:</b> signal (white/yellow) → its signal pin; ground (black/brown) → its ground pin;
+        <b>red (the ESC's 5 V) → not connected</b>, tape it back.</div>
+      <div class="need"><b>Needs:</b> power from the PDB (battery), 1000-2000 µs pulses from Timer2
+        (plan: 400 Hz, 1:8, <code>PR2=18749</code>; 50 Hz if the ESCs refuse). 1000 µs = off/arm.</div>
+      <div class="need"><b>Seesaw:</b> A = 1500 + u (left), B = 1500 − u (right). Props off until Step 4, rig clamped.</div>
+    </div>
+
+    <div class="card" style="--c:var(--gnd)">
+      <h3>Power path</h3>
+      <ul>
+        <li>3S LiPo (11.1 V, 12.6 V full) → XT60 → PDB. Solder a <b>470 µF 50 V</b> capacitor across the PDB battery pads.</li>
+        <li>PDB → each ESC's thick red/black power leads → motors.</li>
+        <li><b>Flight:</b> PDB 5 V BEC → micro-USB cable → kit <b>J4</b>. Never power the kit through the J12 +5 V pins.</li>
+        <li><b>Bench:</b> the kit runs from the PC on <b>J1</b>. Don't plug the BEC into J4 while J1 is connected.</li>
+        <li>All grounds end up common through the ESC ground wires (pins 14/20/25/30).</li>
+      </ul>
+    </div>
+
+    <div class="card" style="--c:var(--gnd)">
+      <h3>On the kit itself (no wiring)</h3>
+      <div class="tscroll"><table>
+        <tr><th>Part</th><th>Pin</th><th>Job</th></tr>
+        <tr><td>SW1</td><td class="mono">RB12</td><td>KILL (motor output off)</td></tr>
+        <tr><td>SW2</td><td class="mono">RB13</td><td>recalibrate</td></tr>
+        <tr><td>SW3</td><td class="mono">RB14</td><td><b>never press</b>: it is the PC serial TX pin</td></tr>
+        <tr><td>LED1</td><td class="mono">RH0</td><td>motor output on</td></tr>
+        <tr><td>LED2</td><td class="mono">RH1</td><td>IMU OK and calibrated</td></tr>
+        <tr><td>LED3</td><td class="mono">RH2</td><td>high during each 4 ms loop (scope it)</td></tr>
+        <tr><td>USB J1</td><td>-</td><td>program/debug + power on the bench</td></tr>
+        <tr><td>USB J11</td><td>-</td><td>PuTTY / PID tuner COM port (115200), uses J12 pins 8 + 10</td></tr>
+        <tr><td>USB J4</td><td>-</td><td>flight power from the PDB 5 V BEC</td></tr>
+      </table></div>
+    </div>
+
+    <div class="card" style="--c:var(--spi)">
+      <h3>Bluefruit LE SPI Friend <span class="chip s6">STEP 6</span></h3>
+      <div class="tscroll"><table>
+        <tr><th>Bluefruit</th><th>J12</th><th>PIC32</th></tr>
+        <tr><td>VIN</td><td class="n">2</td><td class="mono">+5 V</td></tr>
+        <tr><td>GND</td><td class="n">9</td><td class="mono">GND</td></tr>
+        <tr><td>SCK</td><td class="n">23</td><td class="mono">RD1 = SCK1 (shared with IMU)</td></tr>
+        <tr><td>MOSI</td><td class="n">37</td><td class="mono">RD10 = SDO1 (shared)</td></tr>
+        <tr><td>MISO</td><td class="n">7</td><td class="mono">RA14 = SDI1 (shared)</td></tr>
+        <tr><td>CS</td><td class="n">13</td><td class="mono">RJ13</td></tr>
+        <tr><td>IRQ, RST</td><td class="n">-</td><td>not connected</td></tr>
+      </table></div>
+      <div class="need"><b>Needs:</b> SPI mode 0 at 1 MHz (<code>SPI1CON=0x8120</code>, <code>SPI1BRG=29</code>).
+        It shares SPI1 with the IMU: each driver sets <code>SPI1CON</code> before pulling its own CS low, only one CS low at a time,
+        and the Bluefruit code turns off the 4 ms interrupt while its CS is low.</div>
+    </div>
+
+    <div class="card" style="--c:var(--i2c)">
+      <h3>VL53L0X distance sensors × 4 <span class="chip s6">STEP 6</span></h3>
+      <div class="tscroll"><table>
+        <tr><th>Sensor pin</th><th>J12</th><th>Note</th></tr>
+        <tr><td>VIN (all 4)</td><td class="n">17</td><td>+3.3 V</td></tr>
+        <tr><td>GND (all 4)</td><td class="n">39</td><td>ground</td></tr>
+        <tr><td>SDA (all 4)</td><td class="n">3</td><td class="mono">RA3 = SDA2</td></tr>
+        <tr><td>SCL (all 4)</td><td class="n">5</td><td class="mono">RA2 = SCL2</td></tr>
+        <tr><td>XSHUT #1 front</td><td class="n">18</td><td class="mono">RK2</td></tr>
+        <tr><td>XSHUT #2 right</td><td class="n">22</td><td class="mono">RK3</td></tr>
+        <tr><td>XSHUT #3 back</td><td class="n">24</td><td class="mono">RJ5</td></tr>
+        <tr><td>XSHUT #4 left</td><td class="n">26</td><td class="mono">RJ7</td></tr>
+      </table></div>
+      <div class="need"><b>Needs:</b> 3.3 V. The four share VIN, GND, SDA and SCL (split each with a small strip of breadboard).
+        I2C2 at 100 kHz (<code>I2C2BRG=292</code>). At startup, hold every XSHUT low, then wake them one at a time and give each its own address.</div>
+    </div>
+
+    <div class="card" style="--c:var(--led)">
+      <h3>Status LEDs + buzzer <span class="chip s6">STEP 6</span></h3>
+      <div class="tscroll"><table>
+        <tr><th>Part</th><th>J12</th><th>PIC32</th></tr>
+        <tr><td>Green LED</td><td class="n">29</td><td class="mono">RH7</td></tr>
+        <tr><td>Yellow LED</td><td class="n">31</td><td class="mono">RH9</td></tr>
+        <tr><td>Red LED</td><td class="n">33</td><td class="mono">RK4</td></tr>
+        <tr><td>Buzzer</td><td class="n">35</td><td class="mono">RK5</td></tr>
+        <tr><td>Their ground</td><td class="n">34</td><td class="mono">GND</td></tr>
+      </table></div>
+      <div class="need"><b>Each LED needs a 330 Ω resistor:</b> pin → 330 Ω → LED long leg; LED short leg → pin 34.</div>
+      <div class="need"><b>Buzzer:</b> small 3.3 V buzzer: pin 35 → buzzer + ; buzzer − → pin 34.
+        If it is too weak or a 5 V type: pin 35 → 1 kΩ → 2N3904 base; emitter → pin 34; collector → buzzer −; buzzer + → pin 4 (+5 V);
+        1N4148 across the buzzer, stripe to +.</div>
+    </div>
+
+    <div class="card" style="--c:var(--adc)">
+      <h3>Battery voltage sense <span class="chip s6">STEP 6</span></h3>
+      <ul>
+        <li>PDB battery + → <b>33 kΩ</b> → middle point → <b>10 kΩ</b> → ground.</li>
+        <li>Middle point → J12 <b>pin 15</b> (RB3 = AN3, analog).</li>
+        <li><b>0.1 µF</b> from pin 15 to ground (smooths the reading).</li>
+        <li>Pin 15 voltage = battery × 10 / 43: 12.6 V full → 2.93 V, 9.9 V empty → 2.30 V. Always under 3.3 V.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2>Rules that never change</h2>
+  <div class="card" style="--c:var(--p33)">
+    <ol class="rules">
+      <li><b>Pins 8 and 10 are the PC serial link</b> (PuTTY and the PID tuner). Never wire them. Never press SW3.</li>
+      <li><b>3.3 V parts stay on 3.3 V</b> (pins 1 and 17): IMU and VL53L0X. Never 5 V.</li>
+      <li><b>Only pins 7, 11, 12, 15, 19, 21, 37 can carry PWM, SPI data or analog.</b> They are all used. The ESCs can't move to other pins.</li>
+      <li><b>Every ESC signal wire gets its own ground wire</b> to the J12 ground next to it (14, 20, 25, 30). The ESC's red wire is never connected.</li>
+      <li><b>SPI1 is shared:</b> one CS per device (IMU 16, Bluefruit 13), only one CS low at a time.</li>
+      <li><b>Pin 3 belongs to the VL53L0X I2C bus.</b> The IMU's CS moved to pin 16 on Nov 15 for this reason.</li>
+      <li><b>Props off</b> until Step 4, the seesaw clamped, and SW1 (kill) within reach whenever the battery is plugged in.</li>
+      <li><b>Changing a pin</b> means changing this sheet, <code>PINOUT_AND_PLAN.md</code>, <code>CLAUDE.md</code> and the code together.</li>
+    </ol>
+  </div>
+
+  <h2>Change log</h2>
+  <div class="card log">
+    <table>
+      <tr><th>Date</th><th>Change</th></tr>
+      <tr><td>Nov 15 2026</td><td>IMU CS moved from pin 3 to pin 16 (frees pin 3 for I2C2). IMU confirmed on SPI1, not I2C.</td></tr>
+      <tr><td>Nov 16 2026</td><td>Version 1 of this sheet.</td></tr>
+    </table>
+  </div>
+
+  <p class="foot">Source files: <code>PINOUT_AND_PLAN.md</code> (same pinout, in text), DS70005230B Table 2-3 (J12), DS60001320H Tables 12-2/12-3 (pin remapping).</p>
+</div>
+
+<script>
+// One row per J12 pin: [pin, group, part, PIC32 signal, step]
+// group sets the colour; step sets the tag: now, s3, s5, s6, spare, never, nc
+var PINS = [
+  [1,  "p33",   "IMU 3V3",                         "+3.3 V",       "now"],
+  [2,  "p5",    "Bluefruit VIN",                   "+5 V",         "s6"],
+  [3,  "i2c",   "VL53L0X SDA (all 4)",             "RA3 = SDA2",   "s6"],
+  [4,  "p5",    "Spare 5 V (5 V buzzer only)",     "+5 V",         "spare"],
+  [5,  "i2c",   "VL53L0X SCL (all 4)",             "RA2 = SCL2",   "s6"],
+  [6,  "gnd",   "IMU GND",                         "GND",          "now"],
+  [7,  "spi",   "IMU SDO + Bluefruit MISO",        "RA14 = SDI1",  "now"],
+  [8,  "never", "PC serial: do not wire",          "RG6 = U2RX",   "never"],
+  [9,  "gnd",   "Bluefruit GND",                   "GND",          "s6"],
+  [10, "never", "PC serial: do not wire",          "RB14 = U2TX",  "never"],
+  [11, "pwm",   "ESC 1 signal (seesaw A, left)",   "RD0 = OC1",    "s3"],
+  [12, "pwm",   "ESC 2 signal (seesaw B, right)",  "RF2 = OC2",    "s3"],
+  [13, "spi",   "Bluefruit CS",                    "RJ13",         "s6"],
+  [14, "gnd",   "ESC 1 ground",                    "GND",          "s3"],
+  [15, "adc",   "Battery divider",                 "RB3 = AN3",    "s6"],
+  [16, "spi",   "IMU CS",                          "RK1",          "now"],
+  [17, "p33",   "VL53L0X VIN (all 4)",             "+3.3 V",       "s6"],
+  [18, "gpio",  "VL53L0X #1 XSHUT (front)",        "RK2",          "s6"],
+  [19, "pwm",   "ESC 4 signal (back-right)",       "RF5 = OC4",    "s5"],
+  [20, "gnd",   "ESC 2 ground",                    "GND",          "s3"],
+  [21, "pwm",   "ESC 3 signal (back-left)",        "RF4 = OC3",    "s5"],
+  [22, "gpio",  "VL53L0X #2 XSHUT (right)",        "RK3",          "s6"],
+  [23, "spi",   "IMU SCL + Bluefruit SCK",         "RD1 = SCK1",   "now"],
+  [24, "gpio",  "VL53L0X #3 XSHUT (back)",         "RJ5",          "s6"],
+  [25, "gnd",   "ESC 3 ground",                    "GND",          "s5"],
+  [26, "gpio",  "VL53L0X #4 XSHUT (left)",         "RJ7",          "s6"],
+  [27, "nc",    "Not connected",                   "-",            "nc"],
+  [28, "nc",    "Not connected",                   "-",            "nc"],
+  [29, "led",   "Green LED + 330 Ω",               "RH7",          "s6"],
+  [30, "gnd",   "ESC 4 ground",                    "GND",          "s5"],
+  [31, "led",   "Yellow LED + 330 Ω",              "RH9",          "s6"],
+  [32, "spare", "Spare",                           "RH11",         "spare"],
+  [33, "led",   "Red LED + 330 Ω",                 "RK4",          "s6"],
+  [34, "gnd",   "LED + buzzer ground",             "GND",          "s6"],
+  [35, "led",   "Buzzer",                          "RK5",          "s6"],
+  [36, "spare", "Spare",                           "RK6",          "spare"],
+  [37, "spi",   "IMU SDA + Bluefruit MOSI",        "RD10 = SDO1",  "now"],
+  [38, "spare", "Spare",                           "RH15",         "spare"],
+  [39, "gnd",   "VL53L0X GND (all 4)",             "GND",          "s6"],
+  [40, "spare", "Spare",                           "RJ3",          "spare"]
+];
+
+var STEP = { now:"NOW", s3:"STEP 3", s5:"STEP 5", s6:"STEP 6", spare:"SPARE", never:"NEVER", nc:"NC" };
+var GROUPS = [
+  ["p33","+3.3 V"], ["p5","+5 V"], ["gnd","Ground"], ["spi","SPI1 (IMU, Bluefruit)"], ["pwm","ESC signals (PWM)"],
+  ["i2c","I2C2 (VL53L0X)"], ["gpio","On/off pins"], ["led","LEDs, buzzer"], ["adc","Analog (battery)"],
+  ["never","Never wire"], ["spare","Spare"]
+];
+
+function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!==undefined) e.textContent=text; return e; }
+
+function label(p, side){
+  var box = el("div", "lab" + (side==="l" ? " l" : ""));
+  box.style.setProperty("--c", "var(--" + p[1] + ")");
+  if (p[4]==="spare" || p[4]==="nc") box.className += " dim";
+  var top = el("div");
+  var chip = el("span", "chip " + p[4], STEP[p[4]]);
+  var dev = el("span", "dev", p[2]);
+  if (side==="l"){ top.appendChild(chip); top.appendChild(dev); } else { top.appendChild(dev); top.appendChild(chip); }
+  box.appendChild(top);
+  box.appendChild(el("div", "sig", p[3]));
+  return box;
+}
+
+function dot(p){
+  var d = el("div", "pin", String(p[0]));
+  d.style.setProperty("--c", "var(--" + p[1] + ")");
+  if (p[0]===1) d.className += " sq";
+  if (p[1]==="never") d.className += " never";
+  if (p[1]==="spare") d.className += " spare";
+  if (p[1]==="nc") d.className += " nc";
+  d.title = "Pin " + p[0] + ": " + p[2] + " (" + p[3] + ")";
+  return d;
+}
+
+var root = document.getElementById("j12");
+for (var r=0; r<20; r++){
+  var odd = PINS[2*r], even = PINS[2*r+1];
+  var row = el("div", "row");
+  row.appendChild(label(odd, "l"));
+  row.appendChild(dot(odd));
+  row.appendChild(dot(even));
+  row.appendChild(label(even, "r"));
+  root.appendChild(row);
+}
+
+var lg = document.getElementById("legend");
+GROUPS.forEach(function(g){
+  var s = el("span");
+  var sw = el("i", "sw");
+  if (g[0]==="never"){ sw.style.background="#fff"; sw.style.borderColor="var(--never)"; }
+  else if (g[0]==="spare"){ sw.style.borderColor="var(--spare)"; sw.style.borderStyle="dashed"; }
+  else sw.style.background = "var(--" + g[0] + ")";
+  s.appendChild(sw); s.appendChild(document.createTextNode(g[1]));
+  lg.appendChild(s);
+});
+</script>
+</body>
+</html>

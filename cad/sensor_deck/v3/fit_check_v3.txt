@@ -1,0 +1,8 @@
+keys vs slot patch overlap 0.0000 mm3 (0 = keys fit)
+deck vs IMU overlap 0.0000 mm3
+deck vs Bluefruit overlap 0.0000 mm3
+deck vs hub strip overlap 0.0000 mm3
+IMU vs Bluefruit overlap 0.0000 mm3, gap between them 5.08 mm
+hub strip 22.86 x 10.16 mm (9 x 4 holes), bottom at z = 8.1, top at z = 9.7; cable pins stick up 4.4 mm, plugged cable top ~ 24 mm above the plate (plates are 36.8 apart)
+cable header plastic vs IMU headers 0.0000 mm3, vs Bluefruit 0.0000 mm3, vs IMU board 0.0000 mm3
+deck 44.0 x 57.6 x 5.4 mm, volume 6.70 cm3 ~ 8.3 g

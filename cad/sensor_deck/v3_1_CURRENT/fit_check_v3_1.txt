@@ -1,0 +1,20 @@
+keys vs slot patch overlap 0.0000 mm3 (0 = keys fit)
+deck vs IMU overlap 0.0000 mm3
+deck vs Bluefruit overlap 0.0000 mm3
+deck vs hub strip overlap 0.0000 mm3
+IMU vs Bluefruit overlap 0.0000 mm3, gap between them 5.08 mm
+screw heads vs deck overlap 0.0000 mm3
+screw heads vs IMU overlap 0.0000 mm3
+screw heads vs Bluefruit overlap 0.0000 mm3
+screw heads vs hub strip overlap 0.0000 mm3
+screw heads vs cable header overlap 0.0000 mm3
+screw heads vs pins overlap 0.0000 mm3
+screw heads: top at z = 4.8 (deck top 5.0), deck floor under them 2.3 mm -> M2.5 x 8 reaches 4.1 mm below the plate (nut 2.0)
+IMU X arrow after rot(): points to (+0.0, +10.0) -> +Y = TRUE FRONT
+IMU GND...CS row at x = -11.4 (true LEFT side), Bluefruit pin row at x = -19.0
+Bluefruit wing: x -44.6 .. -10.0, y -11.6 .. 14.1
+left arm screws (-46.5, 32.5)-(-32.0, 47.0): wing corner is 14.4 mm inside the line between them
+left arm screws (-46.5, -31.5)-(-32.0, -46.0): wing corner is 15.5 mm inside the line between them
+hub strip 22.86 x 10.16 mm (9 x 4 holes), bottom at z = 9.1, top at z = 10.7; cable pins stick up 4.4 mm, plugged cable top ~ 25 mm above the plate (plates are 36.8 apart)
+cable header plastic vs IMU headers 0.0000 mm3, vs Bluefruit 0.0000 mm3, vs IMU board 0.0000 mm3
+deck 66.6 x 27.1 x 6.4 mm, volume 7.48 cm3 ~ 9.3 g

@@ -1,0 +1,32 @@
+TRAY V4.1 fit check (collar = the printed collar v3.1, legs = caliper-measured model)
+tray V4.1: x -74.0 .. 84.5, y -58.0 .. 56.0, z -86.1 .. -22.0  (158.5 x 114.0 x 64.1), volume 100.8 cm3
+relay on edge in the back lobe: x -12.0 .. 14.0, z -74.7 .. -24.7 (59.0 above the floor, top 24.7 mm under the plate), board 6 mm off the back wall
+relay posts (x, z): (11.25, -27.45), (11.25, -71.95), (-9.25, -27.45), (-9.25, -71.95)
+lead slot: back wall of the back lobe, x -4.5 .. 6.5, from the tray top (z -22) down to z -36
+COM lead path to the outside of the back wall: about 18 mm (up 2.3, back 12.6, down 1.0, wall 2) -> a 38 mm lead leaves about 20 mm outside the box
+plate underside to the slot: 22 .. 36 mm (the minus lead is 51 - 64 mm)
+farthest tray point from the frame center: 93.4 mm (prop discs start at 98.0)
+tray vs collar v3.1 overlap: 0.000 mm3
+joint face: rim 1380 mm2, covered by the collar 1296 mm2 (V3: 1321)
+joint pilot (+69, +30): material 57 mm3, hole clear True
+joint pilot (+69, -30): material 57 mm3, hole clear True
+joint pilot (-69, +30): material 57 mm3, hole clear True
+joint pilot (-69, -30): material 57 mm3, hole clear True
+tray vs measured legs: 0.000   photo-estimate legs: 0.000   conservative leg zone: 0.000 mm3
+tray vs bottom plate: 0.000 mm3
+overlap kit_top     :    0.000 mm3
+overlap kit_bot     :    0.000 mm3
+overlap jumpers     :    0.000 mm3
+overlap plugs       :    0.000 mm3
+overlap bat         :    0.000 mm3
+overlap pb          :    0.000 mm3
+overlap pb_parts    :    0.000 mm3
+overlap usb_plug    :    0.000 mm3
+overlap relay       :    0.000 mm3
+overlap relay_parts :    0.000 mm3
+overlap bullets     :    0.000 mm3
+overlap wires       :    0.000 mm3
+relay screw heads vs tray: 0.000 mm3; pilots 8.9 deep leave 1.1 mm behind them (M3 x 8 goes 6.4 in, M3 x 10 8.4)
+relay vs kit + jumpers + plugs: 0.000 mm3; relay vs proto board: 0.000 mm3
+bullets + leads vs collar: 0.000, vs measured legs: 0.000 mm3
+test_relay_bay_v4_1 coupon: 9.6 cm3 (back lobe only: relay posts + lead slot)

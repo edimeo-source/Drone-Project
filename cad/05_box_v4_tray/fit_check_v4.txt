@@ -1,0 +1,30 @@
+TRAY V4 fit check (collar = the printed collar v3.1, legs = caliper-measured model)
+tray V4: x -74.0 .. 84.5, y -56.0 .. 56.0, z -86.1 .. -22.0  (158.5 x 112.0 x 64.1), volume 100.6 cm3 (V3 tray 88.7)
+right bay inside: x 14.6 .. 82.5, y +/-40.75; roof meets the end wall at z = -42.3 inside (41.4 above the floor)
+proto board x 16.5 .. 74.8, y -35.45 .. 10.75 on 3 mm rails; USB socket at x 60.4, face 0.5 mm from the back wall
+relay x 19.0 .. 69.0, y 13.75 .. 39.75; posts at (66.25, 37.00), (66.25, 16.50), (21.75, 37.00), (21.75, 16.50); power end has 13.5 mm to the end wall
+farthest tray point from the frame center: 93.4 mm (prop discs start at 98.0)
+tray V4 vs collar v3.1 overlap: 0.000 mm3
+joint face: V4 rim 1402 mm2 (V3 rim 1387), covered by the collar 1318 mm2 (V3: 1321)
+joint pilot at (+69, +30): material around it in the top 4 mm 57 mm3, hole clear True
+joint pilot at (+69, -30): material around it in the top 4 mm 57 mm3, hole clear True
+joint pilot at (-69, +30): material around it in the top 4 mm 57 mm3, hole clear True
+joint pilot at (-69, -30): material around it in the top 4 mm 57 mm3, hole clear True
+tray V4 vs measured legs: 0.000   vs photo-estimate legs: 0.000   vs conservative leg zone: 0.000 mm3
+tray V4 vs bottom plate: 0.000 mm3
+overlap kit_top     :    0.000 mm3
+overlap kit_bot     :    0.000 mm3
+overlap jumpers     :    0.000 mm3
+overlap plugs       :    0.000 mm3
+overlap bat         :    0.000 mm3
+kit board vs tray (crush ribs only, intended squeeze): 0.91 mm3
+overlap pb          :    0.000 mm3
+overlap pb_parts    :    0.000 mm3
+overlap usb_plug    :    0.000 mm3
+overlap relay       :    0.000 mm3
+overlap relay_parts :    0.000 mm3
+overlap xt60        :    0.000 mm3
+overlap xt60_plug   :    0.000 mm3
+relay screw heads vs tray: 0.000 mm3; pilot depth 9.0 leaves 1.4 mm of floor under each (an M3 x 10 goes 8.4 into a post)
+proto board vs relay parts: 0.000 mm3; kit + jumpers vs new boards: 0.000 mm3
+test_bay_v4 coupon: 22.0 cm3 (right bay floor + 12 mm of wall: rails, lips, posts, zip slots)

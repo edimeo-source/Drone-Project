@@ -1,0 +1,22 @@
+box bottom 86.1 mm under the plate, battery bottom 112.6 mm under the plate
+tray:   130 x 72 body + front/back bays to y = +/-56, z -86.1 .. -22.0 (64 tall), volume 88.7 cm3
+collar: z -22.0 .. 0 (22 tall) + keys, end plates to x = +/-86, volume 37.8 cm3
+kit: board underside z = -78.7 (5.0 above the floor), top z = -77.1; screw boss at (-39.8, -0.3)
+tray vs collar overlap: 0.000 mm3
+kit board vs tray, crush ribs only (intended squeeze): 0.91 mm3
+overlap kit_top  : tray    0.000   collar    0.000 mm3
+overlap kit_bot  : tray    0.000   collar    0.000 mm3
+overlap jumpers  : tray    0.000   collar    0.000 mm3
+overlap screw    : tray    0.000   collar    0.000 mm3
+overlap plugs    : tray    0.000   collar    0.000 mm3
+overlap pwr      : tray    0.000   collar    0.000 mm3
+overlap xt60     : tray    0.000   collar    0.000 mm3
+overlap xt60_plug: tray    0.000   collar    0.000 mm3
+overlap bat      : tray    0.000   collar    0.000 mm3
+overlap joint screws (heads + clearance part): tray 0.000  collar 0.000 mm3
+overlap bottom plate:     tray 0.000   collar 0.000 mm3
+overlap legs (photo estimate): tray 0.000   collar 0.000 mm3
+overlap legs (conservative model, no margin): tray 0.000   collar 0.000 mm3
+kit drop-in sweep vs tray (minus crush ribs): 0.000 mm3; crush-rib squeeze on a 51.0 board: 1.48 mm3
+power board drop-in sweep vs tray: 0.000 mm3
+keys above z=0: 168.0 mm3, key/plate clash 0.000 mm3

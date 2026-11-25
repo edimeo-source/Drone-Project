@@ -1,0 +1,14 @@
+COLLAR v3.1 fit check (legs = Ethan's caliper numbers + photos)
+collar v3.1 volume 39.3 cm3 (V3 collar 37.8)
+old V3 collar vs measured legs:   1615.9 mm3   <- why it didn't go on
+new collar   vs measured legs:     0.000 mm3
+new collar vs bracket grown by 0.95 mm: 0.000 mm3  (= the gap is all round)
+new collar vs plate:            0.000 mm3
+new collar vs printed tray:     0.000 mm3
+printed tray vs measured legs:  0.000 mm3
+joint face: tray rim area 1387 mm2, covered by new collar 1321 mm2 (old collar covered 1364 mm2)
+joint screw hole at (+69, +30) open: True
+joint screw hole at (+69, -30) open: True
+joint screw hole at (-69, +30) open: True
+joint screw hole at (-69, -30) open: True
+keys 168 mm3 (V3 168), clash with plate 0.000

@@ -1,0 +1,1 @@
+ELC275 drone firmware 2.0 - Nov 23 2026: phone app over Bluetooth (simple blocking Bluefruit driver, IMU-first SPI sharing), relay RK4 active-high, 500 ms heartbeat, step-test arrays to the phone.

@@ -1,0 +1,7 @@
+*.stl   binary
+*.step  -diff linguist-generated
+*.hex   -diff linguist-generated
+*.apk   binary
+*.png   binary
+*.pdf   binary
+*.bat   text eol=crlf

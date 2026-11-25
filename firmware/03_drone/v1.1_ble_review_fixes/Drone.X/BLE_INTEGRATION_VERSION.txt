@@ -1,0 +1,1 @@
+ELC275 BLE integration 1.1 - Nov 20 2026 review fixes on top of ChatGPT draft 1.0 (see README, Changes in revision 1.1).

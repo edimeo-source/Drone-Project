@@ -1,0 +1,14 @@
+# MPLAB X build output and per-user settings
+*.X/build/
+*.X/dist/
+*.X/nbproject/private/
+*.X/debug/
+# Python / OS
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+# signing keys never go in the repo
+*.pem
+*.jks
+*.keystore

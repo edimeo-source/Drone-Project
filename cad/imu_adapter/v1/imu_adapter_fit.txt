@@ -1,0 +1,6 @@
+outer slot centerline y = +/-8.65 mm, slot width 3.0, outer edges 20.3 apart
+snug: outer key faces 20.20 mm apart (slot walls 20.3 apart), turn play about +/-0.36 deg
+normal: key/plate overlap 0.0000 mm3 (0 = keys fit in the slots)
+normal: volume 2.45 cm3 = about 3.0 g PLA
+normal: outer key faces 20.10 mm apart (slot walls 20.3 apart), turn play about +/-0.72 deg
+loose: outer key faces 19.90 mm apart (slot walls 20.3 apart), turn play about +/-1.43 deg
