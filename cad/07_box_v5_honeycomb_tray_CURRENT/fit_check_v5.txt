@@ -1,0 +1,60 @@
+TRAY V5 (honeycomb) fit check - collar = the printed collar v3.1, landing legs removed
+tray V5: x -74.0 .. 86.0, y -58.0 .. 56.0, z -98.1 .. -22.0  (160.0 x 114.0 x 76.1)
+valid solid: True,  volume 109.3 cm3 -> about 136 g of PLA at 100% (V4.1: 100.8 cm3)
+floor 12 mm lower than V4.1: bottom 98.1 mm under the plate; relay stays at V4.1 height
+inside volume (walls to roof, joint down to the floor): 979 cm3 (V4.1: 725 cm3, V3: 612 cm3)
+body below the roof: 151 x 96 mm outside, 146.2 x 91.2 inside; long walls vertical below z -34, right end below z -43
+room beside the kit fence to the long wall: 18.0 mm each side (V4.1: 6.4)
+proto board to the right end wall: 8.8 mm; free strip in front of it: y 5.9 .. 45.6 (39.7 mm)
+farthest tray point from the frame center: 93.2 mm (prop discs start at 98.0)
+honeycomb front wall     : 21 cells
+honeycomb back wall      : 18 cells
+honeycomb right end wall : 13 cells
+honeycomb left end wall  :  8 cells
+honeycomb floor          : 22 cells
+honeycomb: 82 hexagons, 11 mm across the flats (12.7 across the corners), ribs 3.0 mm, open area 86 cm2; flat top of each hexagon = 6.4 mm bridge
+tray vs collar v3.1 overlap: 0.000 mm3
+joint face: tray rim 1545 mm2, covered by the collar 1233 mm2 (V4.1: 1380 / 1296)
+joint pilot (+69, +30): material around it 63 mm3, hole clear True
+joint pilot (+69, -30): material around it 63 mm3, hole clear True
+joint pilot (-69, +30): material around it 120 mm3, hole clear True
+joint pilot (-69, -30): material around it 120 mm3, hole clear True
+tray vs bottom plate: 0.000 mm3
+overlap kit_top     :    0.000 mm3
+overlap kit_bot     :    0.000 mm3
+overlap jumpers     :    0.000 mm3
+overlap plugs       :    0.000 mm3
+overlap pb          :    0.000 mm3
+overlap pb_parts    :    0.000 mm3
+overlap usb_plug    :    0.000 mm3
+overlap relay       :    0.000 mm3
+overlap relay_parts :    0.000 mm3
+overlap bullets     :    0.000 mm3
+overlap wires       :    0.000 mm3
+kit drop-in sweep (straight down through the top) vs tray, minus the crush ribs: 0.000 mm3
+proto board install path (before the kit) vs tray, mm3: lower through the top 0.000, slide back 13 0.000, slide right 14 0.000, drop onto the rails 0.000
+relay screw heads vs tray: 0.000 mm3
+bullets + leads vs collar: 0.000 mm3
+relay vs kit + jumpers + plugs: 0.000; relay vs proto board: 0.000 mm3
+bottom: every face facing straight down at the bottom is at z = [-98.1]; lowest point -98.10 (= -98.1); flat landing area 12602 mm2 (strap ears removed)
+STL: 27330 triangles, watertight True, volume 109.3 cm3
+downward faces steeper than 45 deg (not on the bed): 1494 mm2, of which flat (bridges) 1187 mm2
+   flat overhang at  16.9 mm above the bed:    122 mm2
+   flat overhang at  18.0 mm above the bed:    103 mm2
+   flat overhang at  20.4 mm above the bed:     39 mm2
+   flat overhang at  23.9 mm above the bed:    107 mm2
+   flat overhang at  30.9 mm above the bed:    122 mm2
+   flat overhang at  33.0 mm above the bed:     30 mm2
+   flat overhang at  37.9 mm above the bed:    122 mm2
+   flat overhang at  40.0 mm above the bed:     15 mm2
+   flat overhang at  44.9 mm above the bed:    137 mm2
+   flat overhang at  47.0 mm above the bed:     30 mm2
+   flat overhang at  48.5 mm above the bed:      5 mm2
+   flat overhang at  51.9 mm above the bed:     91 mm2
+   flat overhang at  54.0 mm above the bed:     15 mm2
+   flat overhang at  58.9 mm above the bed:     91 mm2
+   flat overhang at  61.0 mm above the bed:     30 mm2
+   flat overhang at  66.0 mm above the bed:      6 mm2
+   flat overhang at  72.1 mm above the bed:    106 mm2
+   sloped >45 deg: 307 mm2 between 19.8 and 74.9 mm above the bed
+test_relay_bay_v5 coupon: 8.2 cm3 (back wire bay: relay posts + lead slot)

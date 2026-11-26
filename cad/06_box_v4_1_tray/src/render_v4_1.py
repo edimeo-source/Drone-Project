@@ -1,7 +1,7 @@
 # ==============================================================================================
 #  ELC275 DRONE PROJECT  -  Ethan DiMeo
-#  File    : cad/06_box_v4_1_tray_CURRENT/src/render_v4_1.py
-#  Part    : 06_box_v4_1_tray_CURRENT
+#  File    : cad/06_box_v4_1_tray/src/render_v4_1.py
+#  Part    : 06_box_v4_1_tray
 #  What    : Makes the preview pictures in renders/.
 #  FUNCTIONS: actor(), shot()
 # ==============================================================================================

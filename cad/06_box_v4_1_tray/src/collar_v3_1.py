@@ -1,7 +1,7 @@
 # ==============================================================================================
 #  ELC275 DRONE PROJECT  -  Ethan DiMeo
-#  File    : cad/06_box_v4_1_tray_CURRENT/src/collar_v3_1.py
-#  Part    : 06_box_v4_1_tray_CURRENT
+#  File    : cad/06_box_v4_1_tray/src/collar_v3_1.py
+#  Part    : 06_box_v4_1_tray
 #  What    : CadQuery model source (every size is in the PARAMETERS block at the top). Run it to
 #            re-make the STL/STEP files.
 #  FUNCTIONS: bracket_outline(), per_corner(), pockets(), corridor(), make_legs_measured(),

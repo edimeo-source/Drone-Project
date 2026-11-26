@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Date** | 2026-11-24 |
-| **Status** | CURRENT tray - print with collar v3.1 |
+| **Status** | Superseded by v5 (bigger honeycomb tray, flat bottom). Never printed |
 
 ![Box v4.1 tray (relay in back lobe, bullet-lead slot)](renders/1_tray_v4_1_loaded.png)
 

@@ -14,10 +14,10 @@ Parts up to Nov 20 were printed on a Creality K1 SE (Hyper PLA, 0.4 mm nozzle); 
 
 **Print now:**
 
-- tray v4.1 (`06_box_v4_1_tray_CURRENT/print/tray_v4_1.stl`);
+- tray v5 (`07_box_v5_honeycomb_tray_CURRENT/print/tray_v5.stl`, floor down, no supports);
 - collar v3.1 (`04_box_v3_tray_and_collar/print/collar_v3_1.stl`);
 - sensor deck v3.1 (`sensor_deck/v3_1_CURRENT/print/`, pick the snug / normal / loose fit);
-- a replacement landing leg when one breaks (`landing_leg/v1_CURRENT/print/f450_leg_print.stl`, bracket face down, no supports, 100 % infill).
+- (landing legs are off since Nov 25; the leg model stays in `landing_leg/v1_CURRENT` if they go back on).
 
 Frame axes in the models: +X = true right, +Y = true front, z = 0 = the underside of the bottom plate.
 Coordinates differ in the early case v0, so see its README.
@@ -29,9 +29,10 @@ Coordinates differ in the early case v0, so see its README.
 | [`03_box_v2`](03_box_v2) | Electronics box v2 | 2026-11-18 | Superseded by v3 |
 | [`04_box_v3_tray_and_collar`](04_box_v3_tray_and_collar) | Box v3: tray + collar (collar v3.1) | 2026-11-19 | Tray v3 superseded by v4/v4.1. COLLAR v3.1 is still the collar to print |
 | [`05_box_v4_tray`](05_box_v4_tray) | Box v4 tray (relay bay, 45 deg roof) | 2026-11-24 | Superseded by v4.1 (battery leads) |
-| [`06_box_v4_1_tray_CURRENT`](06_box_v4_1_tray_CURRENT) | Box v4.1 tray (relay in back lobe, bullet-lead slot) | 2026-11-24 | CURRENT tray - print with collar v3.1 |
+| [`06_box_v4_1_tray`](06_box_v4_1_tray) | Box v4.1 tray (relay in back lobe, bullet-lead slot) | 2026-11-24 | Superseded by v5 (bigger honeycomb tray, flat bottom). Never printed |
+| [`07_box_v5_honeycomb_tray_CURRENT`](07_box_v5_honeycomb_tray_CURRENT) | Box v5 tray (honeycomb walls, flat bottom, 35% more room) | 2026-11-25 | CURRENT tray - print with collar v3.1. Landing legs off: the box bottom is the landing face. Fit check 0 overlap with the collar, plate, kit, proto board, relay, leads and bullets; no supports. Not yet printed |
 | [`imu_adapter/v1`](imu_adapter/v1) | IMU slot adapter v1 | 2026-11-18 | Superseded by v2 |
 | [`imu_adapter/v2`](imu_adapter/v2) | IMU slot adapter v2 | 2026-11-18 | Superseded by the sensor deck |
 | [`sensor_deck/v3`](sensor_deck/v3) | Sensor deck v3 (IMU + Bluefruit + hub strip) | 2026-11-18 | Superseded by v3.1 |
 | [`sensor_deck/v3_1_CURRENT`](sensor_deck/v3_1_CURRENT) | Sensor deck v3.1 | 2026-11-22 | CURRENT |
-| [`landing_leg/v1_CURRENT`](landing_leg/v1_CURRENT) | F450 replacement landing leg v1 | 2026-11-25 | CURRENT. Fits collar v3.1 / tray v4.1 / the plate (0 overlap at all 4 corners), prints without supports, about 20.8 g. Bracket from calipers; height, lean and weight from listings until checked on a good leg |
+| [`landing_leg/v1_CURRENT`](landing_leg/v1_CURRENT) | F450 replacement landing leg v1 | 2026-11-25 | Not needed since Nov 25 (legs removed, the box is the landing face). Fits collar v3.1 / tray v4.1 / the plate (0 overlap at all 4 corners), prints without supports, about 20.8 g. Bracket from calipers; height, lean and weight from listings until checked on a good leg |

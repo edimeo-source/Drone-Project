@@ -34,9 +34,9 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | How to run v3.1: tune roll, then pitch, then both; stop a spin with the motor adjust buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md`](firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md) |
 | PC PID tuner (USB or Bluetooth) | [`tools/pc_pid_tuner/v8_ble_motor_adjust_2026-11-25_CURRENT`](tools/pc_pid_tuner/v8_ble_motor_adjust_2026-11-25_CURRENT) |
 | Android app (install the APK) | [`tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT`](tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT) |
-| Electronics tray to print | [`cad/06_box_v4_1_tray_CURRENT`](cad/06_box_v4_1_tray_CURRENT) (+ collar v3.1 from [`cad/04_box_v3_tray_and_collar`](cad/04_box_v3_tray_and_collar)) |
+| Electronics tray to print | [`cad/07_box_v5_honeycomb_tray_CURRENT`](cad/07_box_v5_honeycomb_tray_CURRENT) (+ collar v3.1 from [`cad/04_box_v3_tray_and_collar`](cad/04_box_v3_tray_and_collar)) |
 | Sensor deck to print | [`cad/sensor_deck/v3_1_CURRENT`](cad/sensor_deck/v3_1_CURRENT) |
-| Replacement landing leg to print | [`cad/landing_leg/v1_CURRENT`](cad/landing_leg/v1_CURRENT) |
+| Replacement landing leg (legs are off since Nov 25) | [`cad/landing_leg/v1_CURRENT`](cad/landing_leg/v1_CURRENT) |
 | Full J12 pinout, every version | [`docs/PINOUT.md`](docs/PINOUT.md) |
 | Wiring diagrams | [`docs/wiring`](docs/wiring) |
 
@@ -90,7 +90,7 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-23 | Bench: Bluefruit + relay | Phone START/STOP switches the relay | [`firmware/01_bench_tests/09_bluefruit_relay_test`](firmware/01_bench_tests/09_bluefruit_relay_test) |
 | 2026-11-23 | Drone.X v2.0 | Phone app over Bluetooth, relay kill, 500 ms heartbeat, step-test arrays to the phone | [`firmware/03_drone/v2.0_phone_app_relay_heartbeat`](firmware/03_drone/v2.0_phone_app_relay_heartbeat) |
 | 2026-11-23 | PC tuner v6 + Android app 2.0 | Tuners for the v2.0 protocol | [`tools`](tools) |
-| 2026-11-24 | CAD: tray v4, **tray v4.1 (current)** | Relay bay in the back lobe, slot for the battery bullet leads | [`cad/06_box_v4_1_tray_CURRENT`](cad/06_box_v4_1_tray_CURRENT) |
+| 2026-11-24 | CAD: tray v4, tray v4.1 | Relay bay in the back lobe, slot for the battery bullet leads | [`cad/06_box_v4_1_tray`](cad/06_box_v4_1_tray) |
 | 2026-11-25 | Bench: motor ID test | PuTTY command spins the motor you name (RR 1150): wiring + direction check | [`firmware/01_bench_tests/10_motor_id_test`](firmware/01_bench_tests/10_motor_id_test) |
 | 2026-11-25 | Bench: motor calibration test | Kitchen-scale thrust sweep, prints per-motor pulse trims | [`firmware/01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
 | 2026-11-25 | Bench: liftoff throttle test | Full-range (to 2000 us) PuTTY control with +/- steps to find the liftoff pulse | [`firmware/01_bench_tests/12_liftoff_throttle_test`](firmware/01_bench_tests/12_liftoff_throttle_test) |
@@ -99,6 +99,7 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-25 | PC tuner v7 + Android app 3.0 | Axis select, roll and pitch gains, throttle T, Hold row for the demo | [`tools`](tools) |
 | 2026-11-25 | **Drone.X v3.1 (current)** | The drone spun counterclockwise on the tether: live + / - per motor (O command), turn CW / CCW buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |
 | 2026-11-25 | PC tuner v8 + Android app 3.1 | Motor adjust buttons for the v3.1 O command | [`tools`](tools) |
+| 2026-11-25 | CAD: **tray v5 (current)** | Legs off: bigger honeycomb tray, flat bottom to land on, same collar v3.1 | [`cad/07_box_v5_honeycomb_tray_CURRENT`](cad/07_box_v5_honeycomb_tray_CURRENT) |
 | 2026-11-25 | CAD: replacement landing leg v1 | A stock leg broke on the tether: printed copy on the measured bracket, about 20.8 g | [`cad/landing_leg/v1_CURRENT`](cad/landing_leg/v1_CURRENT) |
 
 ## Repo layout

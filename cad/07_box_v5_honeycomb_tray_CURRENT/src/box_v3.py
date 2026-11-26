@@ -1,7 +1,7 @@
 # ==============================================================================================
 #  ELC275 DRONE PROJECT  -  Ethan DiMeo
-#  File    : cad/06_box_v4_1_tray_CURRENT/src/box_v3.py
-#  Part    : 06_box_v4_1_tray_CURRENT
+#  File    : cad/07_box_v5_honeycomb_tray_CURRENT/src/box_v3.py
+#  Part    : 07_box_v5_honeycomb_tray_CURRENT
 #  What    : CadQuery model source (every size is in the PARAMETERS block at the top). Run it to
 #            re-make the STL/STEP files.
 #  FUNCTIONS: kx(), ky(), box(), cyl(), cone(), U(), outline(), leg_keepout(),

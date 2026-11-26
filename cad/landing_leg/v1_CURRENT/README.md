@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Date** | 2026-11-25 |
-| **Status** | CURRENT. Fits collar v3.1 / tray v4.1 / the plate (0 overlap at all 4 corners), prints without supports, about 20.8 g. Bracket from calipers; height, lean and weight from listings until checked on a good leg |
+| **Status** | Not needed since Nov 25 (legs removed, the box is the landing face). Fits collar v3.1 / tray v4.1 / the plate (0 overlap at all 4 corners), prints without supports, about 20.8 g. Bracket from calipers; height, lean and weight from listings until checked on a good leg |
 
 ![F450 replacement landing leg v1](renders/1_leg_iso.png)
 
