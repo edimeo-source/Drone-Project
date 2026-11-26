@@ -4,7 +4,7 @@
 |---|---|
 | **Version** | bench test |
 | **Date** | 2026-11-25 |
-| **Status** | New Nov 25. Checked in a PC simulation with 4 deliberately mismatched motors: the printed trims bring them within 0.4% of each other at every level; R/X/SW1 checked. Not yet run on the board. |
+| **Status** | New Nov 25. Checked in a PC simulation with 4 deliberately mismatched motors: the printed trims bring them within 0.4% of each other at every level; R/X/SW1 checked. Nov 25: Esc/Space stop keys added for the assembled drone (no kit buttons), checked mid-ramp and at a prompt (7 checks). Not yet run on the board. |
 | **Board** | PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK, 60 MHz PBCLK) |
 
 ## J12 pinout for this version
@@ -58,6 +58,7 @@ The PIC can't measure thrust, so you read a kitchen scale and type the number in
    - $\text{thrust} = \text{baseline} - \text{reading}$.
    - All 4 motors are measured at one level before the next level, so the battery slowly draining affects every motor the same way.
    - At a reading prompt: `R` spins that motor again, `X` aborts.
+   - **No kit buttons needed:** `Esc` (or `Space` as the first key) stops all motors and opens the relay at any time, also while a motor is still spinning up. A reading typed before its prompt is kept.
 2. It prints:
    - the thrust table and the spread at each level;
    - each motor's start pulse and strength;

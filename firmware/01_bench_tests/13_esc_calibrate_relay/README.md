@@ -1,10 +1,10 @@
-# ESC throttle calibration through the motor-power relay - all 4 ESCs at once
+# ESC throttle calibration from PuTTY, through the motor-power relay - all 4 ESCs at once, no kit buttons
 
 | | |
 |---|---|
 | **Version** | bench test |
 | **Date** | 2026-11-25 |
-| **Status** | New Nov 25: 07_esc_calibrate with the relay added (2.0 ms first, then RK4 closes the relay). Checked in a PC simulation (8 checks). Not yet run on the board. Props OFF. |
+| **Status** | New Nov 25: 07_esc_calibrate redone for the assembled drone: PuTTY commands instead of SW1/SW2, and the relay is closed by the program (2.0 ms first, then RK4). Checked in a PC simulation (26 checks). Not yet run on the board. Props OFF. |
 | **Board** | PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK, 60 MHz PBCLK) |
 
 ## J12 pinout for this version
@@ -36,11 +36,11 @@ Every `.c` and `.h` file starts with the same pinout in a comment, and every fun
 | File | What it is |
 |---|---|
 | `config.bits` | Configuration bits (120 MHz SYSCLK, 60 MHz PBCLK). `#include`d by main.c, never added as a source file. |
-| `esc_calibrate_relay.c` | ESC throttle calibration through the motor-power relay - all 4 ESCs at once |
+| `esc_calibrate_relay.c` | ESC throttle calibration from PuTTY, through the motor-power relay - all 4 ESCs at once, no kit buttons |
 
 ## Why this one and not 07
 
-`07_esc_calibrate` expects the ESCs to get power the moment you plug the battery in. Since Nov 19 the battery reaches the ESCs only through the relay (J12 pin 33 = RK4, HIGH = on), and 07 never turns RK4 on, so the ESCs never power up and nothing gets calibrated. This version closes the relay itself, at the right moment.
+`07_esc_calibrate` expects the ESCs to get power the moment you plug the battery in, and it is stepped with the kit's SW2 button. Since Nov 19 the battery reaches the ESCs only through the relay (J12 pin 33 = RK4, HIGH = on), and 07 never turns RK4 on, so the ESCs never power up. This version closes the relay itself at the right moment, and runs **entirely from PuTTY**, so it works with the drone fully assembled and the kit buttons out of reach.
 
 ## What calibration fixes (and what it doesn't)
 
@@ -53,16 +53,22 @@ It does **not** make the motors push the same: motors, props and ESCs still diff
 **Setup**
 
 - **Props off.** If an ESC misses the calibration window, 2.0 ms is full throttle.
-- Battery plugged in is fine: the relay keeps the ESCs off until step 2. The kit runs from the 7805 (battery before the relay, J12 pin 2) and/or the PC USB.
-- Wiring as on the drone (ESC signals J12 pins 11, 12, 21, 19; relay CH1 on pin 33).
+- Battery plugged in: the 7805 (tapped before the relay, J12 pin 2) powers the kit, and the relay keeps the ESCs off until the right moment. USB from the PC to the kit for PuTTY.
 
-**Steps** (SW2 = next, SW1 = stop + relay off at any time)
+**Steps**
 
-1. **LED1**: no pulses, relay off. Press SW2.
-2. **LED2**: the board sends 2.0 ms to all 4, waits 0.5 s, then closes the relay. The ESCs play their power-up tune, then 2 short beeps. **Press SW2 right after the 2 beeps** (within 2 s).
-3. **LED3**: the board sends 1.0 ms. Every ESC beeps (3 for a 3S battery), then 1 long beep = range saved. A long tune instead means programming mode: SW1, RESET, start over.
-4. SW2 = test spin: all 4 ramp to 1.10 ms together, spin 3 s, stop. They should start together.
+1. Type `CAL`, then `Y` to confirm the props are off.
+2. The board sends 2.0 ms to all 4, waits 0.5 s, then closes the relay. The ESCs play their power-up tune, then 2 short beeps.
+3. **Press Enter right after the 2 beeps** (within 2 s). Enter in the first second after the relay closes is ignored (too early to be the beeps).
+4. The board sends 1.0 ms. Every ESC beeps (3 for a 3S battery), then 1 long beep = range saved. A long tune instead means programming mode: type `OFF`, then `CAL` again.
+5. Type `T` for a test spin: all 4 ramp to 1100 us together, spin 3 s, stop. They should start together. `T 1150` uses another pulse (1050-1200 us).
+
+**Stopping without the kit buttons**
+
+- `Esc`, `Space` or `X` while a step is waiting or a test spin is running = all 4 at 1000 us **and the relay off**. Any other key also stops a test spin (relay stays on).
+- If nothing is typed for 20 s after the relay closes, it aborts by itself, so 2.0 ms is never held for long.
+- `S` or Enter at the prompt = stop all; `OFF` / `ON` = relay off / on. SW1 still works as a backup.
 
 ## Checked
 
-PC simulation (8 checks): relay pin starts as an output, LOW; step 2 sends 1875 ticks (2.0 ms) with the relay still off, then closes the relay while 2.0 ms is still going out; step 3 sends 938 ticks (1.0 ms); the test spin ramps, holds 1031 ticks (1.10 ms) for 3 s and stops; SW1 sends 1.0 ms and opens the relay. Not yet run on the board.
+PC simulation, 26 checks: nothing is sent before `Y`; step 2 sends 1875 ticks (2.0 ms) with the relay still off, then closes it; an early Enter and a leftover line feed are ignored; Enter after the beeps sends 938 ticks (1.0 ms); `CAL` with the relay already on opens it and waits 3 s first; Esc, Space, the 20 s timeout and SW1 each give 1000 us + relay off; `T` and `T 1150` ramp to 1031 / 1078 ticks, `T 1300` is refused; `T` with the relay off arms for 4 s first. Not yet run on the board.

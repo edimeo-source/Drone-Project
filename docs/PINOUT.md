@@ -238,7 +238,7 @@ PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
   pins 8 (RG6) and 10 (RB14) are the PC link: never wire them, never press SW3
 ```
 
-### ESC throttle calibration through the motor-power relay - all 4 ESCs at once  (2026-11-25)
+### ESC throttle calibration from PuTTY, through the motor-power relay - all 4 ESCs at once, no kit buttons  (2026-11-25)
 
 [`firmware/01_bench_tests/13_esc_calibrate_relay`](../firmware/01_bench_tests/13_esc_calibrate_relay)
 

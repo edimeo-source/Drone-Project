@@ -6,7 +6,8 @@
  *  Version : bench test   |   Date: 2026-11-25
  *  Status  : New Nov 25. Checked in a PC simulation with 4 deliberately mismatched motors: the
  *            printed trims bring them within 0.4% of each other at every level; R/X/SW1
- *            checked. Not yet run on the board.
+ *            checked. Nov 25: Esc/Space stop keys added for the assembled drone (no kit
+ *            buttons), checked mid-ramp and at a prompt (7 checks). Not yet run on the board.
  *  Board   : PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK,
  *            60 MHz PBCLK)
  * ---------------------------------------------------------------------------------------------
@@ -25,9 +26,10 @@
  * ---------------------------------------------------------------------------------------------
  *  FUNCTIONS IN THIS FILE (each has a title block above it): delay_ms(), initU2(), putU2(),
  *    putsU2(), printU2(), getU2(), fstr(), read_float(), us_to_ticks(), initMotors(),
- *    write_pulses(), all_stop(), set_relay(), show_leds(), service(), wait_service(),
- *    read_line(), ask_reading(), relay_on_and_arm(), measure(), fit_lines(), make_trims(),
- *    trimmed(), print_results(), sweep(), check(), help(), main()
+ *    write_pulses(), all_stop(), set_relay(), show_leds(), service(), stop_key_stop(),
+ *    check_keys(), next_key(), wait_service(), read_line(), ask_reading(), relay_on_and_arm(),
+ *    measure(), fit_lines(), make_trims(), trimmed(), print_results(), sweep(), check(),
+ *    help(), main()
  * ---------------------------------------------------------------------------------------------
  *  HOW TO USE: new MPLAB X project (PIC32MZ2048EFM144, XC32). Copy this whole file into main.c,
  *  and put config.bits (same folder in the repo) next to it in the project folder. Do not add
@@ -70,10 +72,12 @@
 //   X           stop everything (also aborts a sweep or a check)
 //   OFF / ON    relay off / on      ? = help
 //   While it asks for a reading: type the number, R = spin this motor again, X = abort.
-// SW1 on the kit = stop all + relay off, any time.
+// Esc (or Space as the first key) in PuTTY = stop all + relay off, any time, also while a
+// motor is spinning up - for the drone fully assembled, when the kit buttons can't be reached.
+// SW1 on the kit does the same, if you can reach it.
 //
 // SET UP (props ON, the props must push air down):
-//   - Run 07_esc_calibrate first, so all 4 ESCs have the same 1.0-2.0 ms range.
+//   - Run 13_esc_calibrate_relay first, so all 4 ESCs have the same 1.0-2.0 ms range.
 //   - FULL battery. Drone centered on the scale (a board on the scale if the legs
 //     don't fit), legs fully on it, nothing under the props, nothing touching the drone.
 //   - Any unit works (grams, ounces) - use the same one for every reading.
@@ -110,7 +114,9 @@ char *names[5]={"", "FL", "FR", "RL", "RR"};
 float now_us[5]={0, STOP_US, STOP_US, STOP_US, STOP_US};    // pulse each ESC gets now (index 1-4)
 float want_us[5]={0, STOP_US, STOP_US, STOP_US, STOP_US};   // pulse it is ramping to
 int relay_on=0;
-int aborted=0;                  // 1 = X or SW1: stop what we're doing
+int aborted=0;                  // 1 = X, Esc/Space or SW1: stop what we're doing
+char early[40];                 // keys typed while a motor was spinning up, kept for the next prompt
+int n_early=0, early_pos=0;
 
 float thrust[5][NLEVELS];       // thrust[motor][level], measured
 int have_data=0;                // 1 = a full sweep was done
@@ -371,14 +377,53 @@ void service(void)
 }
 
 // ---------------------------------------------------------------------------------------------
-// int wait_service(int ms)
-//   Waits ms milliseconds while the ramps and the SW1 check keep running (0 = SW1 aborted it).
+// void stop_key_stop(void)
+//   Esc or Space from PuTTY: all motors to 1000 us, relay off, aborts the sweep (same as SW1).
 // ---------------------------------------------------------------------------------------------
-int wait_service(int ms)        // wait while the ramps and SW1 keep working. 0 = aborted
+void stop_key_stop(void)        // Esc or Space from PuTTY: stop all + relay off (same as SW1)
+{
+    all_stop();
+    set_relay(0);
+    aborted=1;
+    putsU2("");
+    putsU2("STOP key: all motors stopped, relay OFF.");
+}
+
+// ---------------------------------------------------------------------------------------------
+// void check_keys(void)
+//   During a wait: Esc/Space stops everything, any other key is kept for the next prompt.
+// ---------------------------------------------------------------------------------------------
+void check_keys(void)           // during a wait: Esc/Space = stop, any other key is kept for later
+{
+    int c=getU2();
+    if (c<0) return;
+    if (c==27 || c==' ') stop_key_stop();
+    else if (n_early<40) early[n_early++]=c;    // e.g. a reading typed before the prompt
+}
+
+// ---------------------------------------------------------------------------------------------
+// int next_key(void)
+//   Next key for read_line: the ones kept during a spin wait first, then PuTTY. -1 = none.
+// ---------------------------------------------------------------------------------------------
+int next_key(void)              // the kept keys first, then PuTTY. -1 = none
+{
+    if (early_pos<n_early) return early[early_pos++];
+    n_early=0;
+    early_pos=0;
+    return getU2();
+}
+
+// ---------------------------------------------------------------------------------------------
+// int wait_service(int ms)
+//   Waits ms milliseconds while the ramps, SW1 and the Esc/Space stop keep working (0 =
+//   aborted).
+// ---------------------------------------------------------------------------------------------
+int wait_service(int ms)        // wait while the ramps, SW1 and Esc/Space keep working. 0 = aborted
 {
     int i;
     for (i=0;i<ms;i=i+4){
         service();
+        check_keys();
         if (aborted) return 0;
     }
     return 1;
@@ -386,18 +431,22 @@ int wait_service(int ms)        // wait while the ramps and SW1 keep working. 0 
 
 // ---------------------------------------------------------------------------------------------
 // int read_line(char *line, int max)
-//   Waits for one typed line (echoed, backspace works) while the ramps and SW1 keep running. 0
-//   = SW1.
+//   Waits for one typed line (echoed, backspace works). 0 = SW1, Esc, or Space as the first
+//   key.
 // ---------------------------------------------------------------------------------------------
-// Wait for one typed line (echoed). The ramps and SW1 keep working meanwhile.
-// 1 = got a line, 0 = SW1 was pressed.
+// Wait for one typed line (echoed). The ramps, SW1 and Esc keep working meanwhile.
+// 1 = got a line, 0 = SW1, Esc, or Space as the first key (all stopped, relay off).
 int read_line(char *line, int max)
 {
     int len=0, c;
     while (1){
         service();
         if (aborted) return 0;
-        while ((c=getU2())>=0){                 // every key that has arrived (a pasted line too)
+        while ((c=next_key())>=0){              // every key that has arrived (a pasted line too)
+            if (c==27 || (c==' ' && len==0)){   // Esc, or Space as the first key = STOP
+                stop_key_stop();
+                return 0;
+            }
             if (c=='\r' || c=='\n'){
                 if (c=='\n' && len==0) continue;    // the LF after a CR
                 line[len]=0;
@@ -470,6 +519,7 @@ int measure(int n, float us, float *r)
         want_us[n]=us;
         while (now_us[n]<us){                   // ramp up at 200 us/s
             service();
+            check_keys();
             if (aborted) return 0;
         }
         if (!wait_service(SETTLE_MS)) return 0;
@@ -773,8 +823,9 @@ void help(void)
     putsU2("=== MOTOR CALIBRATION TEST (props ON, drone on a kitchen scale) ===");
     putsU2("  GO        sweep: each motor at 1150-1350 us, you type the scale readings");
     putsU2("  V 1250    check the trims at 1250 us        T = results again");
-    putsU2("  X = stop  OFF / ON = relay off / on   ? = help   SW1 = stop all + relay off");
-    putsU2("Run 07_esc_calibrate first. Full battery. Stand back from the props.");
+    putsU2("  X = stop  OFF / ON = relay off / on   ? = help");
+    putsU2("  Esc (or Space as the first key) = stop all + relay off, any time, even mid-spin");
+    putsU2("Run 13_esc_calibrate_relay first. Full battery. Stand back from the props.");
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -821,7 +872,8 @@ int main(void)
         else if (line[0]=='T') print_results();
         else if (line[0]=='X' || line[0]=='S' || line[0]==0){
             all_stop();
-            putsU2("All motors stopped. Relay still on - type OFF to open it.");
+            if (relay_on) putsU2("All motors stopped. Relay still on - type OFF to open it.");
+            else putsU2("All motors stopped. Relay is off.");
         }
         else if (line[0]=='O' && line[1]=='F'){
             all_stop();
