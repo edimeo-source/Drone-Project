@@ -15,7 +15,7 @@ For **Drone.X v3.1** (also fine with 3.0, without the motor adjust). Everything 
 | `test/` | PC test (JVM): run parser, 4-motor mixer and the turn buttons, against REAL firmware 3.1 output. |
 
 Status: built and signature-checked, tested on the PC against the firmware's own output. Not yet run on a phone.
-Guide: [`HOW_TO_RUN.md`](../../../firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md) section 5.
+Guide: [`HOW_TO_RUN.md`](../../../firmware/03_drone/v3.2_ble_cs_pin40/HOW_TO_RUN.md) section 5.
 
-Test: run `sh host_tests/run_tests.sh` in [`firmware/03_drone/v3.1_motor_adjust_buttons`](../../../firmware/03_drone/v3.1_motor_adjust_buttons) first, then
+Test: run `sh host_tests/run_tests.sh` in [`firmware/03_drone/v3.2_ble_cs_pin40`](../../../firmware/03_drone/v3.2_ble_cs_pin40) first, then
 `ANDROID_JAR=<SDK>/platforms/android-33/android.jar sh test/run_test.sh` here.

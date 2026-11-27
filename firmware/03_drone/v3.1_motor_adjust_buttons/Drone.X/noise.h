@@ -3,8 +3,8 @@
  *  File    : firmware/03_drone/v3.1_motor_adjust_buttons/Drone.X/noise.h
  *  What    : Noise-test functions and flag.
  *  Version : v3.1   |   Date: 2026-11-25
- *  Status  : CURRENT. v3.0 plus the O command. Host tests pass (87 checks). Not yet built in
- *            MPLAB or flown.
+ *  Status  : Built in MPLAB on the laptop (Nov 25). v3.0 plus the O command. Host tests pass
+ *            (87 checks). Replaced by v3.2 (same code, Bluefruit CS on pin 40).
  *  Board   : PIC32MZ2048EFM144 EF Starter Kit, MPLAB X 6.15, XC32, config.bits (120 MHz SYSCLK,
  *            60 MHz PBCLK)
  * ---------------------------------------------------------------------------------------------

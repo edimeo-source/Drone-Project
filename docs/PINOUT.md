@@ -7,7 +7,7 @@ All connections are on the **J12 header of the PIC32MZ EF Starter Kit**. Pin fun
 
 This page is generated from the same tables that are printed at the top of every source file.
 
-## Current wiring (v3.1, the same as v2.0)
+## Current wiring (v3.2: v2.0 with the Bluefruit CS on pin 40)
 
 | J12 pin | PIC32 pin | Connected to |
 |---|---|---|
@@ -20,7 +20,6 @@ This page is generated from the same tables that are printed at the top of every
 | 10 | RB14 = U2TX (= SW3) | **PC serial, never wire, never press SW3** |
 | 11 | RD0 -> OC1 (`RPD0R=12`) | ESC 1 front-left signal |
 | 12 | RF2 -> OC2 (`RPF2R=11`) | ESC 2 front-right signal |
-| 13 | RJ13 | Bluefruit CS |
 | 14 | GND | ESC 1 signal ground |
 | 16 | RK1 | IMU CS |
 | 19 | RF5 -> OC4 (`RPF5R=11`) | ESC 4 back-right signal |
@@ -32,6 +31,7 @@ This page is generated from the same tables that are printed at the top of every
 | 33 | RK4 | Relay CH1: HIGH = motor power on, LOW / reset = power cut |
 | 34 | GND | Power/relay board GND |
 | 37 | RD10 -> SDO1 (`RPD10R=5`) | SPI1 MOSI: IMU SDA + Bluefruit MOSI |
+| 40 | RJ3 (digital only) | Bluefruit CS (v3.2; pin 13 up to v3.1) |
 
 Kit parts used by the code:
 
@@ -455,7 +455,7 @@ PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
 Kit LEDs LED1-3 = RH0-RH2   SW1 = RB12   SW2 = RB13
 ```
 
-### Drone.X v3.1 - v3.0 + live +/- per motor (O command, app buttons) for a yaw spin  (CURRENT)  (2026-11-25)
+### Drone.X v3.1 - v3.0 + live +/- per motor (O command, app buttons) for a yaw spin  (2026-11-25)
 
 [`firmware/03_drone/v3.1_motor_adjust_buttons`](../firmware/03_drone/v3.1_motor_adjust_buttons)
 
@@ -478,13 +478,36 @@ PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
 Kit LEDs LED1-3 = RH0-RH2   SW1 = RB12   SW2 = RB13
 ```
 
+### Drone.X v3.2 - v3.1 with the Bluefruit CS on J12 pin 40 (RJ3)  (CURRENT)  (2026-11-26)
+
+[`firmware/03_drone/v3.2_ble_cs_pin40`](../firmware/03_drone/v3.2_ble_cs_pin40)
+
+```text
+IMU LSM6DSO (SPI1 mode 3, CS on pin 16)
+  3V3 pin 1   GND pin 6   SCL/SCK pin 23 (RD1)   SDA/MOSI pin 37 (RD10)
+  SDO/MISO pin 7 (RA14)   CS pin 16 (RK1)
+ESC 1 front-left .. signal J12 pin 11 (RD0 -> OC1)   ground pin 14
+ESC 2 front-right . signal J12 pin 12 (RF2 -> OC2)   ground pin 20
+ESC 3 back-left ... signal J12 pin 21 (RF4 -> OC3)   ground pin 25
+ESC 4 back-right .. signal J12 pin 19 (RF5 -> OC4)   ground pin 30
+ESC red 5 V wires . NOT connected (ESCs are powered by the battery/PDB)
+Bluefruit SPI Friend (shares SPI1 with the IMU through splitter wires)
+  VIN pin 2 (+5 V, the module has its own 3.3 V regulator)   GND any J12 GND pin (e.g. 9)
+  SCK pin 23   MOSI pin 37   MISO pin 7   CS pin 40 (RJ3, moved from pin 13 in v3.2)   IRQ and RST not connected
+Motor-power relay . CH1 = J12 pin 33 (RK4), HIGH = motor power ON, LOW/reset = power cut
+Power/relay board <-> kit: pin 2 (+5 V from the 7805 INTO the kit), pin 33 (RK4), pin 34 (GND)
+PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud
+  pins 8 (RG6) and 10 (RB14) are the PC link: never wire them, never press SW3
+Kit LEDs LED1-3 = RH0-RH2   SW1 = RB12   SW2 = RB13
+```
+
 ## Pin history in one line each
 
 - **IMU:** I2C2 on pins 3/5 (Nov 4 draft, seesaw single file).
   SPI1 with CS on pin 3 (Nov 12 tests).
   SPI1 with **CS on pin 16** from Nov 15 on (pin 3 was kept free for I2C2).
 - **Bluefruit:**
-  - CS on pin 13 in every version.
+  - CS on pin 13 up to v3.1; **pin 40 (RJ3) from v3.2** (Nov 26).
   - VIN on pin 2 (5 V) in the Nov 4 draft, v0.2 and v2.0.
   - VIN on pin 1 (3.3 V) in v1.0-v1.2.
 - **ESCs:** pins 11/12 (2 seesaw motors), then 11/12/21/19 for the quad. Grounds on 14/20/25/30.

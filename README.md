@@ -30,8 +30,8 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 
 | What | Where |
 |---|---|
-| Drone firmware (MPLAB X project) | [`firmware/03_drone/v3.1_motor_adjust_buttons/Drone.X`](firmware/03_drone/v3.1_motor_adjust_buttons/Drone.X) |
-| How to run v3.1: tune roll, then pitch, then both; stop a spin with the motor adjust buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md`](firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md) |
+| Drone firmware (MPLAB X project) | [`firmware/03_drone/v3.2_ble_cs_pin40/Drone.X`](firmware/03_drone/v3.2_ble_cs_pin40/Drone.X) |
+| How to run v3.2: tune roll, then pitch, then both; stop a spin with the motor adjust buttons | [`firmware/03_drone/v3.2_ble_cs_pin40/HOW_TO_RUN.md`](firmware/03_drone/v3.2_ble_cs_pin40/HOW_TO_RUN.md) |
 | PC PID tuner (USB or Bluetooth) | [`tools/pc_pid_tuner/v8_ble_motor_adjust_2026-11-25_CURRENT`](tools/pc_pid_tuner/v8_ble_motor_adjust_2026-11-25_CURRENT) |
 | Android app (install the APK) | [`tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT`](tools/android_drone_tuner/v3.1_motor_adjust_2026-11-25_CURRENT) |
 | Electronics tray to print | [`cad/07_box_v5_honeycomb_tray_CURRENT`](cad/07_box_v5_honeycomb_tray_CURRENT) (+ collar v3.1 from [`cad/04_box_v3_tray_and_collar`](cad/04_box_v3_tray_and_collar)) |
@@ -58,8 +58,8 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | Run the seesaw PID | [`02_seesaw/03_SewSaw_step2-3`](firmware/02_seesaw/03_SewSaw_step2-3) |
 | Find the liftoff pulse | [`01_bench_tests/12_liftoff_throttle_test`](firmware/01_bench_tests/12_liftoff_throttle_test) |
 | Match the 4 motors (trims) | [`01_bench_tests/11_motor_calibration_test`](firmware/01_bench_tests/11_motor_calibration_test) |
-| Fly / tune the drone | [`03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |
-| **Stop the drone spinning on the tether** (motor adjust buttons) | [`03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md`](firmware/03_drone/v3.1_motor_adjust_buttons/HOW_TO_RUN.md) section 5 |
+| Fly / tune the drone | [`03_drone/v3.2_ble_cs_pin40`](firmware/03_drone/v3.2_ble_cs_pin40) |
+| **Stop the drone spinning on the tether** (motor adjust buttons) | [`03_drone/v3.2_ble_cs_pin40/HOW_TO_RUN.md`](firmware/03_drone/v3.2_ble_cs_pin40/HOW_TO_RUN.md) section 5 |
 
 ## Every version, in order
 
@@ -97,7 +97,8 @@ The firmware is in the order it was written. Every `.c` / `.h` file starts with 
 | 2026-11-25 | Bench: ESC calibrate through the relay | PuTTY-only ESC calibration for the assembled drone: 2.0 ms first, then RK4 powers the ESCs | [`firmware/01_bench_tests/13_esc_calibrate_relay`](firmware/01_bench_tests/13_esc_calibrate_relay) |
 | 2026-11-25 | Drone.X v3.0 | Professor's notes: roll PID + pitch PID, 4 different pulses, tune one axis at a time, then both; soft start, motor trims | [`firmware/03_drone/v3.0_two_pid_roll_pitch`](firmware/03_drone/v3.0_two_pid_roll_pitch) |
 | 2026-11-25 | PC tuner v7 + Android app 3.0 | Axis select, roll and pitch gains, throttle T, Hold row for the demo | [`tools`](tools) |
-| 2026-11-25 | **Drone.X v3.1 (current)** | The drone spun counterclockwise on the tether: live + / - per motor (O command), turn CW / CCW buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |
+| 2026-11-25 | Drone.X v3.1 | The drone spun counterclockwise on the tether: live + / - per motor (O command), turn CW / CCW buttons | [`firmware/03_drone/v3.1_motor_adjust_buttons`](firmware/03_drone/v3.1_motor_adjust_buttons) |
+| 2026-11-26 | **Drone.X v3.2 (current)** | Bluefruit CS moved from J12 pin 13 to pin 40 (RJ3); nothing else changed | [`firmware/03_drone/v3.2_ble_cs_pin40`](firmware/03_drone/v3.2_ble_cs_pin40) |
 | 2026-11-25 | PC tuner v8 + Android app 3.1 | Motor adjust buttons for the v3.1 O command | [`tools`](tools) |
 | 2026-11-25 | CAD: **tray v5 (current)** | Legs off: bigger honeycomb tray, flat bottom to land on, same collar v3.1 | [`cad/07_box_v5_honeycomb_tray_CURRENT`](cad/07_box_v5_honeycomb_tray_CURRENT) |
 | 2026-11-25 | CAD: replacement landing leg v1 | A stock leg broke on the tether: printed copy on the measured bracket, about 20.8 g | [`cad/landing_leg/v1_CURRENT`](cad/landing_leg/v1_CURRENT) |
@@ -152,7 +153,7 @@ ESC 4 back-right .. signal J12 pin 19 (RF5 -> OC4)   ground pin 30
 ESC red 5 V wires . NOT connected (ESCs are powered by the battery/PDB)
 Bluefruit SPI Friend (shares SPI1 with the IMU through splitter wires)
   VIN pin 2 (+5 V, the module has its own 3.3 V regulator)   GND any J12 GND pin (e.g. 9)
-  SCK pin 23   MOSI pin 37   MISO pin 7   CS pin 13 (RJ13)   IRQ and RST not connected
+  SCK pin 23   MOSI pin 37   MISO pin 7   CS pin 40 (RJ3, moved from pin 13 in v3.2)   IRQ and RST not connected
 Motor-power relay . CH1 = J12 pin 33 (RK4), HIGH = motor power ON, LOW/reset = power cut
 Power/relay board <-> kit: pin 2 (+5 V from the 7805 INTO the kit), pin 33 (RK4), pin 34 (GND)
 PC serial (PuTTY / PID tuner) . UART2 over the J11 USB port, 115200 baud

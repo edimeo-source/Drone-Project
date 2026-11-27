@@ -4,8 +4,8 @@
  *  What    : Host test: arming, relay, heartbeat, motor output and PC data (runs on a PC with
  *            gcc).
  *  Version : v3.1   |   Date: 2026-11-25
- *  Status  : CURRENT. v3.0 plus the O command. Host tests pass (87 checks). Not yet built in
- *            MPLAB or flown.
+ *  Status  : Built in MPLAB on the laptop (Nov 25). v3.0 plus the O command. Host tests pass
+ *            (87 checks). Replaced by v3.2 (same code, Bluefruit CS on pin 40).
  *  Runs on : a PC (gcc), not the PIC32. Start it with host_tests/run_tests.sh
  * ---------------------------------------------------------------------------------------------
  *  FUNCTIONS IN THIS FILE (each has a title block above it): putsU2(), tick(), main()

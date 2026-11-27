@@ -1,0 +1,1 @@
+v3.2 - Bluefruit CS moved from J12 pin 13 (RJ13) to pin 40 (RJ3). Otherwise v3.1: live +/- per motor (O command, app buttons) on top of v3.0 (roll PID + pitch PID). Based on v2.0.

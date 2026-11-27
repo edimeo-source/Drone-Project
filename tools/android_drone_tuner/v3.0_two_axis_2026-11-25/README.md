@@ -1,7 +1,7 @@
 # Drone Tuner app v3.0  (2026-11-25)
 
 For **Drone.X v3.0**: two PIDs, tuned one axis at a time (professor's notes).
-[v3.1](../v3.1_motor_adjust_2026-11-25_CURRENT) adds the motor adjust buttons and works with firmware 3.0 too.
+[v3.1](../v3.1_motor_adjust_2026-11-25_CURRENT) adds the motor adjust buttons and works with firmware 3.0, 3.1 and 3.2.
 
 | File | What it is |
 |---|---|
